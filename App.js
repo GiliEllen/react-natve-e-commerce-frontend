@@ -25,15 +25,7 @@ export default function App() {
           tabBarInactiveTintColor: "gray",
         })}
       >
-        <Tab.Screen
-          name="Home"
-          component={MainScreen}
-          // options={{
-          //   tabBarIcon: ({ focused, color, size }) => {
-          //     return <Ionicons name="home" size={24} color="black" />;
-          //   },
-          // }}
-        />
+        <Tab.Screen name="Home" component={MainScreen} />
         <Tab.Screen name="NotHome" component={MainScreen} />
       </Tab.Navigator>
     </NavigationContainer>
