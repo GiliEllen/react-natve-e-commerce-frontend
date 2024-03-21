@@ -1,14 +1,13 @@
 import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import React from "react";
+import MyStatusBar from "../statusBar/StatusBar";
 
 const CompleteOrder = () => {
   return (
     <View style={styles.container}>
-      <Image
-        source={require("../assets/status-bar.png")}
-        style={styles.statusImg}
-      />
-      <Image source={require("../assets/bags.png")} style={styles.bagsimg} />
+      <MyStatusBar />
+      <Image style={styles.statusImg} />
+      <Image source={require("../../assets/bags.png")} style={styles.bagsimg} />
       <Text style={styles.title}>Success!</Text>
       <Text style={styles.content}>
         Your order will be delivered soon. Thank you for choosing our app!
@@ -19,7 +18,7 @@ const CompleteOrder = () => {
         </View>
       </TouchableOpacity>
       <Image
-        source={require("../assets/home-indicator.png")}
+        source={require("../../assets/home-indicator.png")}
         style={styles.homeImg}
       />
     </View>
@@ -30,7 +29,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "flex-start", // Change justifyContent to flex-start
+    paddingTop: 30, // Add paddingTop to create space for the status bar
     backgroundColor: "#FFFFFF",
   },
   title: {
