@@ -1,6 +1,5 @@
 import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import React from "react";
-import MyStatusBar from "../statusBar/StatusBar";
 
 const CompleteOrder = () => {
   return (
@@ -16,10 +15,6 @@ const CompleteOrder = () => {
           <Text style={styles.buttonText}>CONTINUE SHOPPING</Text>
         </View>
       </TouchableOpacity>
-      <Image
-        source={require("../../assets/home-indicator.png")}
-        style={styles.homeImg}
-      />
     </View>
   );
 };
@@ -66,9 +61,6 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: "white",
-  },
-  homeImg: {
-    marginBottom: 15,
   },
 });
 
