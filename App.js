@@ -4,8 +4,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MainScreen from "./screens/mainScreen/MainScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
-import ProfilePage from "./screens/profilePage/ProfilePage";
-
+import StackNavigation from "./screens/stackNavigation/StackNavigation";
 const Tab = createBottomTabNavigator();
 
 export default function App() {
@@ -28,7 +27,7 @@ export default function App() {
       >
         <Tab.Screen name="Home" component={MainScreen} />
         <Tab.Screen name="NotHome" component={MainScreen} />
-        <Tab.Screen name="ProfilePage" component={ProfilePage} />
+        <Tab.Screen name="StackNavigation" component={StackNavigation} />
       </Tab.Navigator>
     </NavigationContainer>
   );

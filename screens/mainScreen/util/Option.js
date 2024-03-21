@@ -1,7 +1,7 @@
 import { View, Text,Pressable,StyleSheet } from 'react-native'
 import React from 'react'
 import { Entypo } from '@expo/vector-icons';
-const Option = ({label,span}) => {
+const Option = ({label,span,nameRouter,navigation}) => {
   return (
     <View style={styles.option}>
         <View>
@@ -9,7 +9,7 @@ const Option = ({label,span}) => {
         <Text style={styles.span}>{span}</Text>
         </View>
         <View>
-            <Pressable>
+            <Pressable  onPress={()=> navigation.navigate(`${nameRouter}`,{name: `${nameRouter}`})}>
             <Entypo name="chevron-right" size={20} color="gray" />
             </Pressable>
         </View> 

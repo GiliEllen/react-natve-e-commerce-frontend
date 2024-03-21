@@ -3,7 +3,7 @@ import React from 'react'
 import Option from '../mainScreen/util/Option'
 
 
-const ProfilePage = () => {
+const ProfilePage = ({navigation}) => {
   return (
     <View style={{padding:15}}>
       <Text style={{fontWeight:"bold", fontSize:35, paddingBottom:18}}>My profile</Text>
@@ -19,12 +19,12 @@ const ProfilePage = () => {
         <Text style={{color:"gray"}}>matilda@gmail.com</Text>
       </View>
       </View>
-      <Option label={"My orders"} span={"Already have 12 orders"}/>
-      <Option label={"Shipping addresses"} span={"3 ddresses"}/>
-      <Option label={"Payment methods"} span={"Visa **34"}/>
-      <Option label={"Promocodes"} span={"You have special promocodes"}/>
-      <Option label={"My reviews"} span={"Reviews for 4 items"}/>
-      <Option label={"Settings"} span={"Notifications, password"}/>
+      <Option label={"My orders"} span={"Already have 12 orders"} nameRouter="ProfilePage" navigation={navigation}/>
+      <Option label={"Shipping addresses"} span={"3 ddresses"} nameRouter="MainScreen" navigation={navigation}/>
+      <Option label={"Payment methods"} span={"Visa **34"} nameRouter="MainScreen" navigation={navigation}/>
+      <Option label={"Promocodes"} span={"You have special promocodes"} nameRouter="MainScreen" navigation={navigation}/>
+      <Option label={"My reviews"} span={"Reviews for 4 items"} nameRouter="MainScreen" navigation={navigation}/>
+      <Option label={"Settings"} span={"Notifications, password"} nameRouter="MainScreen" navigation={navigation}/>
       
     </View>
   )
