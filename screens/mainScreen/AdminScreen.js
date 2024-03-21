@@ -1,69 +1,146 @@
-import { View, Text, FlatList, TextInput } from "react-native";
+import {
+  View,
+  Text,
+  FlatList,
+  TextInput,
+  StyleSheet,
+  Modal,
+  Pressable,
+  Alert,
+} from "react-native";
 import React, { useEffect, useState } from "react";
-import { getAllUsers } from "../../api/adminApi";
+import { deleteUser, getAllUsers, updateUser } from "../../api/adminApi";
 
 const AdminScreen = () => {
   const [users, setUsers] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
-  const [name, setName] = useState()
-  const [email, setEmail] = useState()
+  const [userName, setUserName] = useState("");
+  const [email, setEmail] = useState("");
+  const [userId, setUserId] = useState("");
 
   useEffect(() => {
     async function fetchData() {
       const data = await getAllUsers();
+      console.log("data from get all users in admin screen is:", data); //got it
       setUsers(data);
     }
     fetchData();
   }, []);
 
-  const handleUpdateUser = () => {
+  const handleUpdateUser = async () => {
+    try {
+      console.log("userName:", userName);
+      console.log("email:", email);
+      console.log("userId:", userId);
+      const updateData = await updateUser(userId, userName, email);
+      if (updateData) {
+        const data = await getAllUsers();
+        console.log("data from get all users in admin screen is:", data); //got it
+        setUsers(data);
+        setModalVisible(!modalVisible);
+      } else {
+        Alert.alert("UPDATE FAILED");
+        setModalVisible(!modalVisible);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-
-    setModalVisible(!modalVisible)
-  }
+  const handleDeleteUser = async () => {
+    console.log("from handleDeleteUser")
+    try {
+      const ok = await deleteUser(userId);
+      if (ok) {
+        const data = await getAllUsers();
+        console.log("data from get all users in admin screen is:", data); //got it
+        setUsers(data);
+      } else {
+        Alert.alert("DELETE FAILED");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <View>
-      <Text>Admin Screen</Text>
       <FlatList
         data={users}
-        renderItem={({ user }) => {
+        renderItem={({ item }) => {
           return (
             <View style={styles.centeredView}>
-              <Text>{user.name}</Text>
-              <Text>{user.email}</Text>
-              <Modal
-                animationType="slide"
-                transparent={true}
-                visible={modalVisible}
-                onRequestClose={() => {
-                  Alert.alert("Modal has been closed.");
-                  setModalVisible(!modalVisible);
-                }}
-              >
-                <View style={styles.centeredView}>
-                  <View style={styles.modalView}>
-                    <TextInput onChangeText={text => } style={styles.input} placeholder="update name here..." keyboardType="string"/>
-                    <TextInput style={styles.input} placeholder="update email here..." keyboardType="string"/>
-                    <Pressable
-                      style={[styles.button, styles.buttonClose]}
-                      onPress={handleUpdateUser()}
-                    >
-                      <Text style={styles.textStyle}>Update Now</Text>
-                    </Pressable>
-                  </View>
-                </View>
-              </Modal>
-              <Pressable
-                style={[styles.button, styles.buttonOpen]}
-                onPress={() => setModalVisible(true)}
-              >
-                <Text style={styles.textStyle}>update user here</Text>
-              </Pressable>
+              <Text>{item.name}</Text>
+              <Text>{item.email}</Text>
+
+              <View style={styles.sideBySideView}>
+                <Pressable
+                  style={[styles.button, styles.buttonOpen]}
+                  onPress={() => {
+                    setEmail(item.email);
+                    setUserName(item.name);
+                    setUserId(item._id);
+                    setModalVisible(true);
+                  }}
+                >
+                  <Text style={styles.textStyle}>update user here</Text>
+                </Pressable>
+
+                <Pressable
+                  style={[styles.button, styles.buttonOpen]}
+                  onPress={() => {
+                    setUserId(item._id);
+                    Alert.alert("Delete this user?", undefined, [{text: "cancel", style: "cancel"}, {text: "OK", onPress: () => handleDeleteUser(),},])
+                  }}
+                >
+                  <Text style={styles.textStyle}>Delete user</Text>
+                </Pressable>
+              </View>
             </View>
           );
         }}
       />
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          setModalVisible(!modalVisible);
+        }}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Pressable
+              style={[styles.buttonX]}
+              onPress={() => setModalVisible(!modalVisible)}
+            >
+              <Text style={styles.textStyle}>X</Text>
+            </Pressable>
+
+            <TextInput
+              value={userName}
+              onChangeText={setUserName}
+              style={styles.input}
+              placeholder="update name here..."
+              keyboardType="default"
+            />
+            <TextInput
+              value={email}
+              onChangeText={setEmail}
+              style={styles.input}
+              placeholder="update email here..."
+              keyboardType="default"
+            />
+            <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={handleUpdateUser}
+            >
+              <Text style={styles.textStyle}>Update Now</Text>
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 };
@@ -101,6 +178,13 @@ const styles = StyleSheet.create({
   buttonClose: {
     backgroundColor: "red",
   },
+  buttonX: {
+    alignItems: "left",
+    backgroundColor: "red", 
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+  },
   textStyle: {
     color: "white",
     fontWeight: "bold",
@@ -115,6 +199,9 @@ const styles = StyleSheet.create({
     margin: 12,
     borderWidth: 1,
     padding: 10,
+  },
+  sideBySideView: {
+    flexDirection: "row",
   },
 });
 

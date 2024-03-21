@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MainScreen from "./screens/mainScreen/MainScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
+import AdminScreen from "./screens/mainScreen/AdminScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -18,6 +19,8 @@ export default function App() {
               iconName = focused ? "home" : "home-outline";
             } else if (route.name === "TabB") {
               iconName = focused ? "ios-list-outline" : "ios-list";
+            } else if (route.name === "Admin") {
+              iconName = focused ? "man-outline" : "person-circle-outline";
             }
             return <Ionicons name={iconName} size={size} color={color} />;
           },
@@ -26,6 +29,7 @@ export default function App() {
         })}
       >
         <Tab.Screen name="Home" component={MainScreen} />
+        <Tab.Screen name="Admin" component={AdminScreen} />
         <Tab.Screen name="NotHome" component={MainScreen} />
       </Tab.Navigator>
     </NavigationContainer>
