@@ -27,7 +27,6 @@ export default function App() {
         })}
       >
         <Tab.Screen name="Home" component={MainScreen} />
-        <Tab.Screen name="CompleteOrder" component={CompleteOrder} />
       </Tab.Navigator>
     </NavigationContainer>
   );
