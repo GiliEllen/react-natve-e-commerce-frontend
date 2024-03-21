@@ -12,3 +12,15 @@ export const getAllProducts = async () => {
     return error;
   }
 };
+
+export const getSpecificProduct = async (productId) => {
+  try {
+    const { data } = await axios.get(`${API_URL}/api/products/${productId}`);
+    console.log(data);
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.error(error);
+    return error;
+  }
+};
