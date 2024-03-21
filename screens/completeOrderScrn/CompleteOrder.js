@@ -5,7 +5,6 @@ import MyStatusBar from "../statusBar/StatusBar";
 const CompleteOrder = () => {
   return (
     <View style={styles.container}>
-      <MyStatusBar />
       <Image style={styles.statusImg} />
       <Image source={require("../../assets/bags.png")} style={styles.bagsimg} />
       <Text style={styles.title}>Success!</Text>
@@ -29,8 +28,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "flex-start", // Change justifyContent to flex-start
-    paddingTop: 30, // Add paddingTop to create space for the status bar
+    justifyContent: "flex-start",
+    paddingTop: 30,
     backgroundColor: "#FFFFFF",
   },
   title: {
