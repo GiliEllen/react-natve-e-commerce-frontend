@@ -4,7 +4,11 @@ import React from "react";
 const CompleteOrder = () => {
   return (
     <View style={styles.container}>
-      <Image source={require("../assets/bags.png")} style={styles.image} />
+      <Image
+        source={require("../assets/status-bar.png")}
+        style={styles.statusImg}
+      />
+      <Image source={require("../assets/bags.png")} style={styles.bagsimg} />
       <Text style={styles.title}>Success!</Text>
       <Text style={styles.content}>
         Your order will be delivered soon. Thank you for choosing our app!
@@ -16,7 +20,7 @@ const CompleteOrder = () => {
       </TouchableOpacity>
       <Image
         source={require("../assets/home-indicator.png")}
-        style={styles.homeImage}
+        style={styles.homeImg}
       />
     </View>
   );
@@ -35,7 +39,7 @@ const styles = StyleSheet.create({
     fontSize: 34,
     lineHeight: 39.84,
   },
-  image: {
+  bagsimg: {
     marginBottom: 30,
     marginTop: 30,
     width: 208,
@@ -44,7 +48,7 @@ const styles = StyleSheet.create({
   content: {
     width: 240,
     height: 45,
-    marginBottom: 115,
+    marginBottom: 90,
     lineHeight: 20,
     textAlign: "center",
     fontSize: 14,
@@ -52,7 +56,7 @@ const styles = StyleSheet.create({
   button: {
     width: 343,
     height: 48,
-    marginBottom: 12,
+    marginBottom: 5,
   },
   buttonContent: {
     backgroundColor: "#DB3022",
@@ -64,7 +68,9 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "white",
   },
-  homeImage: {},
+  homeImg: {
+    marginBottom: 15,
+  },
 });
 
 export default CompleteOrder;
