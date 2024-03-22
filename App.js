@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MainScreen from "./screens/mainScreen/MainScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
+import CompleteOrder from "./screens/completeOrderScrn/CompleteOrder";
 
 const Tab = createBottomTabNavigator();
 
@@ -26,7 +27,6 @@ export default function App() {
         })}
       >
         <Tab.Screen name="Home" component={MainScreen} />
-        <Tab.Screen name="NotHome" component={MainScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );
