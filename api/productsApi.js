@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "https://react-native-e-commerce-backend.onrender.com";
+export const API_URL = "https://react-native-e-commerce-backend.onrender.com";
 
 export const getAllProducts = async () => {
   try {

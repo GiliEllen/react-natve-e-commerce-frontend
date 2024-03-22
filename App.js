@@ -5,6 +5,7 @@ import MainScreen from "./screens/mainScreen/MainScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import ProductScreen from "./screens/productScreen/ProductScreen";
+import CompleteOrder from "./screens/completeOrderScrn/CompleteOrder";
 
 const Tab = createBottomTabNavigator();
 
