@@ -5,7 +5,7 @@ const CompleteOrder = () => {
   return (
     <View style={styles.container}>
       <Image style={styles.statusImg} />
-      <Image source={require("../../assets/Bags.png")} style={styles.bagsimg} />
+      <Image source={require("../../assets/bags.png")} style={styles.bagsimg} />
       <Text style={styles.title}>Success!</Text>
       <Text style={styles.content}>
         Your order will be delivered soon. Thank you for choosing our app!
