@@ -4,8 +4,8 @@ import Option from "../../components/Option";
 
 const ProfilePage = ({ navigation }) => {
   return (
-    <View style={{ padding: 15 }}>
-      <Text style={{ fontWeight: "bold", fontSize: 35, paddingBottom: 18 }}>
+    <View style={styles.view}>
+      <Text style={styles.textProfile}>
         My profile
       </Text>
       <View style={styles.profile}>
@@ -16,10 +16,10 @@ const ProfilePage = ({ navigation }) => {
           }}
         />
         <View>
-          <Text style={{ fontWeight: "bold", fontSize: 18 }}>
+          <Text style={styles.textName}>
             Matilda Brown
           </Text>
-          <Text style={{ color: "gray" }}>matilda@gmail.com</Text>
+          <Text style={styles.textEmail}>matilda@gmail.com</Text>
         </View>
       </View>
       <Option
@@ -65,6 +65,21 @@ const ProfilePage = ({ navigation }) => {
 export default ProfilePage;
 
 const styles = StyleSheet.create({
+  view:{
+    padding: 15 
+  },
+  textProfile:{
+    fontWeight: "bold",
+    fontSize: 35,
+    paddingBottom: 18
+  },
+  textName:{
+    fontWeight: "bold",
+    fontSize: 18 
+  },
+  textEmail:{
+    color: "gray"
+  },
   profile: {
     display: "flex",
     flexDirection: "row",
