@@ -3,23 +3,19 @@ import { Ionicons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import MainScreen from "./screens/mainScreen/MainScreen";
-import Shop from "./screens/shopScreen/ShopScreen";
-import Bag from "./screens/bagScreen/BagScreen";
-import Profile from "./screens/profileScreen/ProfileScreen";
-import Admin from "./screens/adminScreen/AdminScreen";
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
-  const [isAdmin, setIsAdmin] = useState(false);
+  // const [isAdmin, setIsAdmin] = useState(false);
 
-  const checkAdmin = () => {
-    setIsAdmin(true);
-  };
+  // const checkAdmin = () => {
+  //   setIsAdmin(true);
+  // };
 
-  useEffect(() => {
-    checkAdmin();
-  }, []);
+  // useEffect(() => {
+  //   checkAdmin();
+  // }, []);
 
   return (
     <NavigationContainer>
@@ -37,7 +33,7 @@ export default function App() {
             } else if (route.name === "Profile") {
               iconName = focused ? "person" : "person-outline";
             }
-            if (isAdmin && route.name === "Admin") {
+            if (route.name === "Admin") {
               iconName = focused ? "shield" : "shield-outline";
             }
 
@@ -48,10 +44,10 @@ export default function App() {
         })}
       >
         <Tab.Screen name="Home" component={MainScreen} />
-        <Tab.Screen name="Shop" component={Shop} />
-        <Tab.Screen name="Bag" component={Bag} />
-        <Tab.Screen name="Profile" component={Profile} />
-        {isAdmin && <Tab.Screen name="Admin" component={Admin} />}
+        <Tab.Screen name="Shop" component={MainScreen} />
+        <Tab.Screen name="Bag" component={MainScreen} />
+        <Tab.Screen name="Profile" component={MainScreen} />
+        <Tab.Screen name="Admin" component={MainScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );
