@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
+import React from "react";
 import MainScreen from "./screens/mainScreen/MainScreen";
 
 const Tab = createBottomTabNavigator();
