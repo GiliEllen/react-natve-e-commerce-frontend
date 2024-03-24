@@ -7,16 +7,6 @@ import MainScreen from "./screens/mainScreen/MainScreen";
 const Tab = createBottomTabNavigator();
 
 export default function App() {
-  // const [isAdmin, setIsAdmin] = useState(false);
-
-  // const checkAdmin = () => {
-  //   setIsAdmin(true);
-  // };
-
-  // useEffect(() => {
-  //   checkAdmin();
-  // }, []);
-
   return (
     <NavigationContainer>
       <Tab.Navigator
