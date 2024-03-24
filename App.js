@@ -3,7 +3,6 @@ import { StyleSheet, Text, View } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import MainScreen from "./screens/mainScreen/MainScreen";
-
 import { Ionicons } from "@expo/vector-icons";
 import UserProfileScreen from "./screens/stackNavigation/StackNavigation";
 const Tab = createBottomTabNavigator();
@@ -19,7 +18,7 @@ export default function App() {
               iconName = focused ? "home" : "home-outline";
             } else if (route.name === "TabB") {
               iconName = focused ? "ios-list-outline" : "ios-list";
-            } else if (route.name === "Profile"){
+            } else if (route.name === "Profile") {
               iconName = focused ? "person" : "person-outline";
             }
             return <Ionicons name={iconName} size={size} color={color} />;
