@@ -5,7 +5,7 @@ import MainScreen from '../mainScreen/MainScreen';
 
 const Stack = createNativeStackNavigator();
 
-const StackNavigation = () => {
+const UserProfileScreen = () => {
   return (
       <Stack.Navigator>
         <Stack.Screen name='ProfilePage' component={ProfilePage} options={{ headerShown: false }}/>
@@ -16,4 +16,4 @@ const StackNavigation = () => {
   )
 }
 
-export default StackNavigation
+export default UserProfileScreen

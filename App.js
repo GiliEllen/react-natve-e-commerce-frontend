@@ -5,7 +5,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import MainScreen from "./screens/mainScreen/MainScreen";
 
 import { Ionicons } from "@expo/vector-icons";
-import StackNavigation from "./screens/stackNavigation/StackNavigation";
+import UserProfileScreen from "./screens/stackNavigation/StackNavigation";
 const Tab = createBottomTabNavigator();
 
 export default function App() {
@@ -29,8 +29,7 @@ export default function App() {
         })}
       >
         <Tab.Screen name="Home" component={MainScreen} />
-        <Tab.Screen name="NotHome" component={MainScreen} />
-        <Tab.Screen name="Profile" component={StackNavigation} />
+        <Tab.Screen name="Profile" component={UserProfileScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );
