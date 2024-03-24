@@ -1,9 +1,9 @@
-import { Ionicons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import React from "react";
 import MainScreen from "./screens/mainScreen/MainScreen";
-
+import { Ionicons } from "@expo/vector-icons";
+import UserProfileScreen from "./screens/stackNavigation/StackNavigation";
 const Tab = createBottomTabNavigator();
 
 export default function App() {
@@ -13,7 +13,6 @@ export default function App() {
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
-
             if (route.name === "Home") {
               iconName = focused ? "home" : "home-outline";
             } else if (route.name === "Shop") {
@@ -26,7 +25,6 @@ export default function App() {
             if (route.name === "Admin") {
               iconName = focused ? "shield" : "shield-outline";
             }
-
             return <Ionicons name={iconName} size={size} color={color} />;
           },
           tabBarActiveTintColor: "#DB3022",
@@ -34,9 +32,9 @@ export default function App() {
         })}
       >
         <Tab.Screen name="Home" component={MainScreen} />
+        <Tab.Screen name="Profile" component={UserProfileScreen} />
         <Tab.Screen name="Shop" component={MainScreen} />
         <Tab.Screen name="Bag" component={MainScreen} />
-        <Tab.Screen name="Profile" component={MainScreen} />
         <Tab.Screen name="Admin" component={MainScreen} />
       </Tab.Navigator>
     </NavigationContainer>
