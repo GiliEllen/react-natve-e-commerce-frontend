@@ -18,6 +18,8 @@ export default function App() {
               iconName = focused ? "home" : "home-outline";
             } else if (route.name === "TabB") {
               iconName = focused ? "ios-list-outline" : "ios-list";
+            } else if (route.name === "Profile"){
+              iconName = focused ? "person" : "person-outline";
             }
             return <Ionicons name={iconName} size={size} color={color} />;
           },
@@ -27,7 +29,7 @@ export default function App() {
       >
         <Tab.Screen name="Home" component={MainScreen} />
         <Tab.Screen name="NotHome" component={MainScreen} />
-        <Tab.Screen name="StackNavigation" component={StackNavigation} />
+        <Tab.Screen name="Profile" component={StackNavigation} />
       </Tab.Navigator>
     </NavigationContainer>
   );

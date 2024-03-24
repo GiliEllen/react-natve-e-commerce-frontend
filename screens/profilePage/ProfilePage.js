@@ -1,6 +1,6 @@
 import { View, Text, Image, StyleSheet } from 'react-native'
 import React from 'react'
-import Option from '../mainScreen/util/Option'
+import Option from './util/Option'
 
 
 const ProfilePage = ({navigation}) => {
