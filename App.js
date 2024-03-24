@@ -34,10 +34,11 @@ export default function App() {
               iconName = focused ? "cart" : "cart-outline";
             } else if (route.name === "Bag") {
               iconName = focused ? "bag-handle" : "bag-handle-outline";
-            } else if (route.name === "Profile" && !isAdmin) {
-              iconName = focused ? "heart" : "heart";
-            } else if (route.name === "Admin" && isAdmin) {
-              iconName = focused ? "star" : "star";
+            } else if (route.name === "Profile") {
+              iconName = focused ? "person" : "person-outline";
+            }
+            if (isAdmin && route.name === "Admin") {
+              iconName = focused ? "shield" : "shield-outline";
             }
 
             return <Ionicons name={iconName} size={size} color={color} />;
@@ -49,7 +50,7 @@ export default function App() {
         <Tab.Screen name="Home" component={MainScreen} />
         <Tab.Screen name="Shop" component={Shop} />
         <Tab.Screen name="Bag" component={Bag} />
-        {!isAdmin && <Tab.Screen name="Profile" component={Profile} />}
+        <Tab.Screen name="Profile" component={Profile} />
         {isAdmin && <Tab.Screen name="Admin" component={Admin} />}
       </Tab.Navigator>
     </NavigationContainer>
