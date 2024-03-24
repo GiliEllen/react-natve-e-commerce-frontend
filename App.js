@@ -1,8 +1,9 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import MainScreen from "./screens/mainScreen/MainScreen";
 import { NavigationContainer } from "@react-navigation/native";
+import MainScreen from "./screens/mainScreen/MainScreen";
+
 import { Ionicons } from "@expo/vector-icons";
 import StackNavigation from "./screens/stackNavigation/StackNavigation";
 const Tab = createBottomTabNavigator();
