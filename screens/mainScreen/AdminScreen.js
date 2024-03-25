@@ -21,7 +21,6 @@ const AdminScreen = () => {
   useEffect(() => {
     async function fetchData() {
       const data = await getAllUsers();
-      console.log("data from get all users in admin screen is:", data); //got it
       setUsers(data);
     }
     fetchData();
@@ -29,13 +28,9 @@ const AdminScreen = () => {
 
   const handleUpdateUser = async () => {
     try {
-      console.log("userName:", userName);
-      console.log("email:", email);
-      console.log("userId:", userId);
       const updateData = await updateUser(userId, userName, email);
       if (updateData) {
         const data = await getAllUsers();
-        console.log("data from get all users in admin screen is:", data); //got it
         setUsers(data);
         setModalVisible(!modalVisible);
       } else {
@@ -48,12 +43,10 @@ const AdminScreen = () => {
   };
 
   const handleDeleteUser = async () => {
-    console.log("from handleDeleteUser")
     try {
       const ok = await deleteUser(userId);
       if (ok) {
         const data = await getAllUsers();
-        console.log("data from get all users in admin screen is:", data); //got it
         setUsers(data);
       } else {
         Alert.alert("DELETE FAILED");
@@ -67,6 +60,7 @@ const AdminScreen = () => {
     <View>
       <FlatList
         data={users}
+        keyExtractor={item => item._id}
         renderItem={({ item }) => {
           return (
             <View style={styles.centeredView}>
@@ -83,14 +77,17 @@ const AdminScreen = () => {
                     setModalVisible(true);
                   }}
                 >
-                  <Text style={styles.textStyle}>update user here</Text>
+                  <Text style={styles.textStyle}>Update user here</Text>
                 </Pressable>
 
                 <Pressable
                   style={[styles.button, styles.buttonOpen]}
                   onPress={() => {
                     setUserId(item._id);
-                    Alert.alert("Delete this user?", undefined, [{text: "cancel", style: "cancel"}, {text: "OK", onPress: () => handleDeleteUser(),},])
+                    Alert.alert("Delete this user?", undefined, [
+                      { text: "cancel", style: "cancel" },
+                      { text: "OK", onPress: () => handleDeleteUser() },
+                    ]);
                   }}
                 >
                   <Text style={styles.textStyle}>Delete user</Text>
@@ -104,10 +101,7 @@ const AdminScreen = () => {
         animationType="slide"
         transparent={true}
         visible={modalVisible}
-        onRequestClose={() => {
-          Alert.alert("Modal has been closed.");
-          setModalVisible(!modalVisible);
-        }}
+        onRequestClose={() => setModalVisible(!modalVisible)}
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
@@ -136,7 +130,7 @@ const AdminScreen = () => {
               style={[styles.button, styles.buttonClose]}
               onPress={handleUpdateUser}
             >
-              <Text style={styles.textStyle}>Update Now</Text>
+              <Text style={styles.textStyle}>UPDATE NOW</Text>
             </Pressable>
           </View>
         </View>
@@ -180,7 +174,7 @@ const styles = StyleSheet.create({
   },
   buttonX: {
     alignItems: "left",
-    backgroundColor: "red", 
+    backgroundColor: "red",
     borderRadius: 20,
     padding: 10,
     elevation: 2,
