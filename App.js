@@ -1,9 +1,10 @@
-import { Ionicons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
+import React from "react";
 import AdminScreen from "./screens/mainScreen/AdminScreen";
 import MainScreen from "./screens/mainScreen/MainScreen";
-
+import { Ionicons } from "@expo/vector-icons";
+import UserProfileScreen from "./screens/stackNavigation/StackNavigation";
 const Tab = createBottomTabNavigator();
 
 export default function App() {
@@ -15,20 +16,27 @@ export default function App() {
             let iconName;
             if (route.name === "Home") {
               iconName = focused ? "home" : "home-outline";
-            } else if (route.name === "TabB") {
-              iconName = focused ? "ios-list-outline" : "ios-list";
+            } else if (route.name === "Shop") {
+              iconName = focused ? "cart" : "cart-outline";
+            } else if (route.name === "Bag") {
+              iconName = focused ? "bag-handle" : "bag-handle-outline";
+            } else if (route.name === "Profile") {
+              iconName = focused ? "person" : "person-outline";
             } else if (route.name === "Admin") {
               iconName = focused ? "man-outline" : "person-circle-outline";
             }
             return <Ionicons name={iconName} size={size} color={color} />;
           },
-          tabBarActiveTintColor: "tomato",
-          tabBarInactiveTintColor: "gray",
+          tabBarActiveTintColor: "#DB3022",
+          tabBarInactiveTintColor: "#9B9B9B",
         })}
       >
         <Tab.Screen name="Home" component={MainScreen} />
         <Tab.Screen name="Admin" component={AdminScreen} />
         <Tab.Screen name="NotHome" component={MainScreen} />
+        <Tab.Screen name="Profile" component={UserProfileScreen} />
+        <Tab.Screen name="Shop" component={MainScreen} />
+        <Tab.Screen name="Bag" component={MainScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );

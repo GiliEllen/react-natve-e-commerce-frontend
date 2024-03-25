@@ -1,7 +1,14 @@
-import { View, Text, Image, StyleSheet, Pressable } from "react-native";
 import React from "react";
+import { View, Text, Image, StyleSheet, Pressable } from "react-native";
+import { useNavigation } from "@react-navigation/native"; // Import useNavigation hook
 
 const CompleteOrder = () => {
+  const navigation = useNavigation();
+
+  const handleContinueShopping = () => {
+    navigation.navigate("Home");
+  };
+
   return (
     <View style={styles.container}>
       <Image style={styles.statusImg} />
@@ -10,7 +17,7 @@ const CompleteOrder = () => {
       <Text style={styles.content}>
         Your order will be delivered soon. Thank you for choosing our app!
       </Text>
-      <Pressable style={styles.button}>
+      <Pressable style={styles.button} onPress={handleContinueShopping}>
         <View style={styles.buttonContent}>
           <Text style={styles.buttonText}>CONTINUE SHOPPING</Text>
         </View>
