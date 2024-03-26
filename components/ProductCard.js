@@ -1,20 +1,19 @@
 import { View, Text, Pressable } from 'react-native';
 import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { Image, ScrollView, StyleSheet } from 'react-native';
-import { Ionicons } from '@expo/vector-icons'; // Import Ionicons or any other icon library you prefer
-import { getSpecificProduct } from '../api/productsApi'; // Assuming you have an api folder in the same directory
+import { Ionicons } from '@expo/vector-icons'; 
+import { getSpecificProduct } from '../api/productsApi'; 
 
 const ProductCard = ({ navigation, productId }) => {
-    const [isFavorite, setIsFavorite] = useState(false); // State to track if the product is in favorites
-    const [product, setProduct] = useState(); // State to hold product data
-    const [sizePressed, setSizePressed] = useState(false); // State to track if size is pressed
-    const [colorPressed, setColorPressed] = useState(false); // State to track if color is pressed
+    const [isFavorite, setIsFavorite] = useState(false); 
+    const [product, setProduct] = useState(); 
+    const [sizePressed, setSizePressed] = useState(false); 
+    const [colorPressed, setColorPressed] = useState(false); 
 
     useEffect(() => {
         const fetchProduct = async () => {
             try {
-                const productData = await getSpecificProduct("65faf26b8dec99b4cd38a768"); // This is the product ID for testing, real id will be passed from the products screen
-                // const productData = await getSpecificProduct(productId); // This is the product ID
+                const productData = await getSpecificProduct(productId); 
                 if (!productData) {
                     console.error("Product not found");
                     return;
@@ -28,7 +27,7 @@ const ProductCard = ({ navigation, productId }) => {
     }, []);
 
     const toggleFavorite = () => {
-        setIsFavorite(!isFavorite); // Toggle the favorite state
+        setIsFavorite(!isFavorite); 
     };
 
     useLayoutEffect(() => {
@@ -47,16 +46,12 @@ const ProductCard = ({ navigation, productId }) => {
         });
     }, [navigation, product]);
 
-    // Rendering the ProductCard UI
     return (
         <View style={styles.container}>
             <ScrollView vertical={false} horizontal={true} style={styles.imageContainer} showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false}  >
-                {/* no images in DB so replaced with local for testing */}
-                <Image source={require('../assets/shirt1.png')} style={styles.image} /> 
-                <Image source={require('../assets/shirt2.png')} style={styles.image} />
-                {/* {product && product.images.map((image, index) => (
+                {product && product.images.map((image, index) => (
                     <Image key={index} source={{ uri: image }} style={styles.image} />
-                ))} */}
+                ))}
             </ScrollView>
             <View style={styles.contentContainer}>
                 <View style={styles.userChoice}>
@@ -84,7 +79,7 @@ const ProductCard = ({ navigation, productId }) => {
                     <View style={styles.content}>
                         <View>
                             <Text style={{ fontSize: 24 }}>H&M</Text>
-                            <Text style={{ color: "#9B9B9B", fontSize: 11 }}>{product.description}</Text>
+                            <Text style={{ color: "#9B9B9B", fontSize: 11 }}>{product.name}</Text>
                             <View style={styles.ratingContainer}>
                                 {[...Array(5)].map((_, index) => (
                                     <Ionicons key={index} name={index < product.rating ? "star" : "star"} size={20} color="gold" />
@@ -100,7 +95,7 @@ const ProductCard = ({ navigation, productId }) => {
                 {product && (
                     <View style={styles.content}>
                         <Text style={{ color: "#222222", fontSize: 14 }}>
-                            lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            {product.description}
                         </Text>
                     </View>
                 )}
