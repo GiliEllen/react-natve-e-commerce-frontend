@@ -23,7 +23,9 @@ export default function App() {
             } else if (route.name === "Profile") {
               iconName = focused ? "person" : "person-outline";
             } else if (route.name === "Admin") {
-              iconName = focused ? "man-outline" : "person-circle-outline";
+              iconName = focused
+                ? "person-circle-sharp"
+                : "person-circle-outline";
             }
             return <Ionicons name={iconName} size={size} color={color} />;
           },
