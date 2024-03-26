@@ -1,3 +1,5 @@
+//app.js
+
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import React from "react";
@@ -5,10 +7,15 @@ import AdminScreen from "./screens/mainScreen/AdminScreen";
 import MainScreen from "./screens/mainScreen/MainScreen";
 import { Ionicons } from "@expo/vector-icons";
 import UserProfileScreen from "./screens/stackNavigation/StackNavigation";
+import UserCart from "./screens/userCart/UserCart";
+import { Provider } from "react-redux";
+import store from "./app/store";
 const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
+
+    <Provider store={store}>
     <NavigationContainer>
       <Tab.Navigator
         screenOptions={({ route }) => ({
@@ -16,7 +23,7 @@ export default function App() {
             let iconName;
             if (route.name === "Home") {
               iconName = focused ? "home" : "home-outline";
-            } else if (route.name === "Shop") {
+            } else if (route.name === "Cart") {
               iconName = focused ? "cart" : "cart-outline";
             } else if (route.name === "Bag") {
               iconName = focused ? "bag-handle" : "bag-handle-outline";
@@ -34,9 +41,10 @@ export default function App() {
         <Tab.Screen name="Home" component={MainScreen} />
         <Tab.Screen name="Admin" component={AdminScreen} />
         <Tab.Screen name="Profile" component={UserProfileScreen} />
-        <Tab.Screen name="Shop" component={MainScreen} />
+        <Tab.Screen name="Cart" component={UserCart} />
         <Tab.Screen name="Bag" component={MainScreen} />
       </Tab.Navigator>
     </NavigationContainer>
+    </Provider>
   );
 }
