@@ -1,6 +1,7 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import React from "react";
+import AdminScreen from "./screens/mainScreen/AdminScreen";
 import MainScreen from "./screens/mainScreen/MainScreen";
 import { Ionicons } from "@expo/vector-icons";
 import ProductScreen from "./screens/productScreen/ProductScreen";
@@ -24,9 +25,8 @@ export default function App() {
               iconName = focused ? "bag-handle" : "bag-handle-outline";
             } else if (route.name === "Profile") {
               iconName = focused ? "person" : "person-outline";
-            }
-            if (route.name === "Admin") {
-              iconName = focused ? "shield" : "shield-outline";
+            } else if (route.name === "Admin") {
+              iconName = focused ? "man-outline" : "person-circle-outline";
             }
             return <Ionicons name={iconName} size={size} color={color} />;
           },
@@ -37,10 +37,10 @@ export default function App() {
         <Tab.Screen name="Home" component={MainScreen} />
         <Tab.Screen name="NotHome" component={MainScreen} />
         <Tab.Screen name="productCard" component={ProductScreen} />
+        <Tab.Screen name="Admin" component={AdminScreen} />
         <Tab.Screen name="Profile" component={UserProfileScreen} />
         <Tab.Screen name="Shop" component={MainScreen} />
         <Tab.Screen name="Bag" component={MainScreen} />
-        <Tab.Screen name="Admin" component={MainScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );
