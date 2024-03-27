@@ -2,7 +2,7 @@ import { View, Text, Image, StyleSheet } from "react-native";
 import React from "react";
 import Option from "../../components/Option";
 import { useSelector } from "react-redux";
-import { selectUserState } from "../../reducers/userSlice";
+import { selectUserState } from "../../reducers/user/userSlice";
 
 const ProfilePage = ({ navigation }) => {
   const user = useSelector(selectUserState);
