@@ -11,7 +11,11 @@
   "dependencies": {
     "@react-navigation/bottom-tabs": "^6.5.16",
     "@react-navigation/material-top-tabs": "^6.6.13",
+<<<<<<< HEAD
     "@react-navigation/native": "^6.1.17",
+=======
+    "@react-navigation/native": "^6.1.14",
+>>>>>>> d26ce5ba381de9042b234a2aa7949cc002a23ba0
     "@react-navigation/native-stack": "^6.9.26",
     "@reduxjs/toolkit": "^2.2.1",
     "axios": "^1.6.8",
