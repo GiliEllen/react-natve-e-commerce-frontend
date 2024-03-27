@@ -6,6 +6,9 @@ import React from "react";
 import AdminScreen from "./screens/mainScreen/AdminScreen";
 import MainScreen from "./screens/mainScreen/MainScreen";
 import { Ionicons } from "@expo/vector-icons";
+import ProductScreen from "./screens/productScreen/ProductScreen";
+import CompleteOrder from "./screens/completeOrderScrn/CompleteOrder";
+
 import UserProfileScreen from "./screens/stackNavigation/StackNavigation";
 import UserCart from "./screens/userCart/UserCart";
 import { Provider } from "react-redux";
