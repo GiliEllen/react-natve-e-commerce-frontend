@@ -5,7 +5,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { getSpecificProduct } from "../api/productsApi";
 import { useNavigation } from "@react-navigation/core";
 import SizeModalScreen from "../screens/productScreen/sizeModalScreen/SizeModalScreen";
-import ColorModalScreen from "../screens/productScreen/colorModalScreen/ColorModalScreen";
+import ColorModalScreen from "../screens/productScreen/ChooseColorModal/ChooseColorModal";
 
 const ProductCard = ({ productId }) => {
   const [isFavorite, setIsFavorite] = useState(false);
