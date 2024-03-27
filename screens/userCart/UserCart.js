@@ -1,4 +1,3 @@
-// UserCart.js
 
 import React from 'react';
 import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
@@ -18,10 +17,10 @@ const UserCart = () => {
         {error && <Text>{error}</Text>}
     </Text>
     <Text>
-        {activeCartItems.length === 0 && <Text>עגלה ריקה</Text>}
+        {activeCartItems.length === 0 && <Text> empty cart</Text>}
     </Text>
     <Text>
-        {activeCartItems.length > 0 && <Text>מוצרים בעגלה: {activeCartItems.length}</Text>}
+        {activeCartItems.length > 0 && <Text> products: {activeCartItems.length}</Text>}
     </Text>
    
     </View>
