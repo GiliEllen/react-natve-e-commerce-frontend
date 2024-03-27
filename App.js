@@ -35,8 +35,6 @@ export default function App() {
         })}
       >
         <Tab.Screen name="Home" component={MainScreen} />
-        <Tab.Screen name="NotHome" component={MainScreen} />
-        <Tab.Screen name="productCard" component={ProductScreen} />
         <Tab.Screen name="Admin" component={AdminScreen} />
         <Tab.Screen name="Profile" component={UserProfileScreen} />
         <Tab.Screen name="Shop" component={MainScreen} />

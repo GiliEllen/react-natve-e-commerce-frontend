@@ -5,7 +5,6 @@ export const API_URL = "https://react-native-e-commerce-backend.onrender.com";
 export const getAllProducts = async () => {
   try {
     const { data } = await axios.get(`${API_URL}/api/products`);
-    console.log(data);
     return data;
   } catch (error) {
     console.error(error);
@@ -16,11 +15,9 @@ export const getAllProducts = async () => {
 export const getSpecificProduct = async (productId) => {
   try {
     const { data } = await axios.get(`${API_URL}/api/products/${productId}`);
-    console.log(data);
-    console.log(data);
     return data;
   } catch (error) {
     console.error(error);
-    return error;
+    return;
   }
 };
