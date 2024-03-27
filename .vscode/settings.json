@@ -1,6 +1,11 @@
 {
+<<<<<<< HEAD
     "cSpell.words": [
         "Ionicons",
         "Pressable"
     ]
+=======
+    "editor.formatOnPaste": false,
+    "editor.formatOnSave": true
+>>>>>>> d26ce5b (WIP)
 }
