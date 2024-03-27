@@ -20,13 +20,6 @@ const AdminScreen = () => {
   const [email, setEmail] = useState("");
   const [userId, setUserId] = useState("");
 
-  const [productName, setProductName] = useState("");
-  const [productDescription, setProductDescription] = useState("");
-  const [productBrand, setProductBrand] = useState("");
-  const [productSize, setProductSize] = useState("");
-  const [productPrice, setProductPrice] = useState("");
-  const [productColor, setProductColor] = useState("");
-
   useEffect(() => {
     async function fetchData() {
       const data = await getAllUsers();
@@ -65,30 +58,8 @@ const AdminScreen = () => {
     }
   };
 
-  const handleAddProduct = async () => {
-    try {
-      const addedProduct = await addProduct({
-        name: productName,
-        description: productDescription,
-        brand: productBrand,
-        size: productSize,
-        price: productPrice,
-        color: productColor,
-      });
-      if (addedProduct) {
-        setProductName("");
-        setProductDescription("");
-        setProductBrand("");
-        setProductSize("");
-        setProductPrice("");
-        setProductColor("");
-        setProductModalVisible(false);
-      } else {
-        Alert.alert("Failed to add product");
-      }
-    } catch (error) {
-      console.error(error);
-    }
+  const handleAddProductModal = () => {
+    setProductModalVisible(true);
   };
 
   return (
@@ -136,39 +107,12 @@ const AdminScreen = () => {
       <View style={styles.addButtonContainer}>
         <Pressable
           style={[styles.button, styles.addProdButton]}
-          onPress={() => setProductModalVisible(true)}
+          onPress={handleAddProductModal}
         >
           <Text style={styles.addProdText}>+</Text>
         </Pressable>
       </View>
 
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={productModalVisible}
-        onRequestClose={() => setProductModalVisible(false)}
-      >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <AddNewProdModal
-              productName={productName}
-              setProductName={setProductName}
-              productDescription={productDescription}
-              setProductDescription={setProductDescription}
-              productBrand={productBrand}
-              setProductBrand={setProductBrand}
-              productSize={productSize}
-              setProductSize={setProductSize}
-              productPrice={productPrice}
-              setProductPrice={setProductPrice}
-              productColor={productColor}
-              setProductColor={setProductColor}
-              handleAddProduct={handleAddProduct}
-              closeModal={() => setProductModalVisible(false)}
-            />
-          </View>
-        </View>
-      </Modal>
       <Modal
         animationType="slide"
         transparent={true}
@@ -207,6 +151,11 @@ const AdminScreen = () => {
           </View>
         </View>
       </Modal>
+
+      <AddNewProdModal
+        modalVisible={productModalVisible}
+        setModalVisible={setProductModalVisible}
+      />
     </View>
   );
 };
@@ -247,7 +196,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#DB3022",
   },
   addProdButton: {
-    marginTop: 400,
+    marginBottom: 0,
     borderRadius: 100,
     width: 50,
     height: 50,

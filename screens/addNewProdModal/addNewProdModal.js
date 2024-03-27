@@ -1,79 +1,96 @@
-// AddNewProdModal.js
+import React, { useState } from "react";
+import {
+  View,
+  Text,
+  TextInput,
+  Pressable,
+  StyleSheet,
+  Modal,
+} from "react-native";
 
-import React from "react";
-import { View, Text, TextInput, Pressable, StyleSheet } from "react-native";
+const AddNewProdModal = ({ modalVisible, setModalVisible }) => {
+  const [productName, setProductName] = useState("");
+  const [productDescription, setProductDescription] = useState("");
+  const [productBrand, setProductBrand] = useState("");
+  const [productSize, setProductSize] = useState("");
+  const [productPrice, setProductPrice] = useState("");
+  const [productColor, setProductColor] = useState("");
 
-const AddNewProdModal = ({
-  productName,
-  setProductName,
-  productDescription,
-  setProductDescription,
-  productBrand,
-  setProductBrand,
-  productSize,
-  setProductSize,
-  productPrice,
-  setProductPrice,
-  productColor,
-  setProductColor,
-  handleAddProduct,
-  closeModal,
-}) => {
+  const handleAddProduct = () => {
+    console.log("Product Name:", productName);
+    console.log("Product Description:", productDescription);
+    console.log("Product Brand:", productBrand);
+    console.log("Product Size:", productSize);
+    console.log("Product Price:", productPrice);
+    console.log("Product Color:", productColor);
+
+    setModalVisible(false);
+  };
+
   return (
-    <View style={styles.modalContent}>
-      <Pressable style={styles.closeButton} onPress={closeModal}>
-        <Text style={styles.closeButtonText}>X</Text>
-      </Pressable>
-      <TextInput
-        value={productName}
-        onChangeText={setProductName}
-        style={styles.input}
-        placeholder="Product Name"
-      />
-      <TextInput
-        value={productDescription}
-        onChangeText={setProductDescription}
-        style={styles.input}
-        placeholder="Product Description"
-      />
-      <TextInput
-        value={productBrand}
-        onChangeText={setProductBrand}
-        style={styles.input}
-        placeholder="Product Brand"
-      />
-      <TextInput
-        value={productSize}
-        onChangeText={setProductSize}
-        style={styles.input}
-        placeholder="Product Size"
-      />
-      <TextInput
-        value={productPrice}
-        onChangeText={setProductPrice}
-        style={styles.input}
-        placeholder="Product Price"
-      />
-      <TextInput
-        value={productColor}
-        onChangeText={setProductColor}
-        style={styles.input}
-        placeholder="Product Color"
-      />
-      <Pressable style={styles.addButton} onPress={handleAddProduct}>
-        <Text style={styles.buttonText}>Add Product</Text>
-      </Pressable>
-    </View>
+    <Modal
+      animationType="slide"
+      transparent={true}
+      visible={modalVisible}
+      onRequestClose={() => setModalVisible(false)}
+    >
+      <View style={styles.modalContent}>
+        <Pressable
+          style={styles.closeButton}
+          onPress={() => setModalVisible(false)}
+        >
+          <Text style={styles.closeButtonText}>X</Text>
+        </Pressable>
+        <TextInput
+          value={productName}
+          onChangeText={setProductName}
+          style={styles.input}
+          placeholder="Product Name"
+        />
+        <TextInput
+          value={productDescription}
+          onChangeText={setProductDescription}
+          style={styles.input}
+          placeholder="Product Description"
+        />
+        <TextInput
+          value={productBrand}
+          onChangeText={setProductBrand}
+          style={styles.input}
+          placeholder="Product Brand"
+        />
+        <TextInput
+          value={productSize}
+          onChangeText={setProductSize}
+          style={styles.input}
+          placeholder="Product Size"
+        />
+        <TextInput
+          value={productPrice}
+          onChangeText={setProductPrice}
+          style={styles.input}
+          placeholder="Product Price"
+        />
+        <TextInput
+          value={productColor}
+          onChangeText={setProductColor}
+          style={styles.input}
+          placeholder="Product Color"
+        />
+        <Pressable style={styles.addButton} onPress={handleAddProduct}>
+          <Text style={styles.buttonText}>Add Product</Text>
+        </Pressable>
+      </View>
+    </Modal>
   );
 };
 
 const styles = StyleSheet.create({
   modalContent: {
-    backgroundColor: "white",
-    borderRadius: 20,
-    padding: 35,
+    flex: 1,
+    justifyContent: "center",
     alignItems: "center",
-    elevation: 5,
+    backgroundColor: "white",
   },
   input: {
     height: 40,
@@ -90,7 +107,7 @@ const styles = StyleSheet.create({
     padding: 10,
     elevation: 2,
     marginVertical: 10,
-    width: "100%",
+    width: 220,
   },
   buttonText: {
     color: "white",
