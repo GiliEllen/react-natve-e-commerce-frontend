@@ -3,6 +3,10 @@ import { NavigationContainer } from "@react-navigation/native";
 import React from "react";
 import AdminScreen from "./screens/mainScreen/AdminScreen";
 import MainScreen from "./screens/mainScreen/MainScreen";
+import LoginScreen from "./screens/loginRegister/LoginScreen";
+import RegisterScreen from "./screens/loginRegister/RegisterScreen";
+
+
 import { Ionicons } from "@expo/vector-icons";
 import UserProfileScreen from "./screens/stackNavigation/StackNavigation";
 const Tab = createBottomTabNavigator();
@@ -25,6 +29,13 @@ export default function App() {
             } else if (route.name === "Admin") {
               iconName = focused ? "man-outline" : "person-circle-outline";
             }
+            else if (route.name === "Login") {
+              iconName = focused ? "person" : "person-circle-outline";
+            }
+            else if (route.name === "Register") {
+              iconName = focused ? "person" : "person-circle-outline";
+            }
+            
             return <Ionicons name={iconName} size={size} color={color} />;
           },
           tabBarActiveTintColor: "#DB3022",
@@ -36,6 +47,11 @@ export default function App() {
         <Tab.Screen name="Profile" component={UserProfileScreen} />
         <Tab.Screen name="Shop" component={MainScreen} />
         <Tab.Screen name="Bag" component={MainScreen} />
+        <Tab.Screen name="Login" component={LoginScreen} />
+        <Tab.Screen name="Register" component={RegisterScreen} />
+
+
+        
       </Tab.Navigator>
     </NavigationContainer>
   );

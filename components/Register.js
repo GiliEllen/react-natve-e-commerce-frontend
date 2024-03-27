@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { View, TextInput, Button, Text, StyleSheet } from 'react-native';
-import { createUser } from './api'; 
+import { createUser } from  '../api/usersApi'; 
 
 const Register = () => {
   const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState(null);
@@ -26,6 +27,12 @@ const Register = () => {
 
   return (
     <View style={styles.container}>
+        <TextInput
+        placeholder="Name"
+        onChangeText={setName}
+        value={name}
+        style={styles.input}
+      />
       <TextInput
         placeholder="Email"
         onChangeText={setEmail}

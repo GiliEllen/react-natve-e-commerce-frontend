@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, TextInput, Button, Text, StyleSheet } from 'react-native';
-import { authenticateUser } from './api'; // ייבוא הפונקציה לאימות משתמש מה-API שיצרנו
+import { authUser } from '../api/usersApi'; // ייבוא הפונקציה לאימות משתמש מה-API שיצרנו
 
 const Login = () => {
   // הגדרת משתנים עבור פרטי ההתחברות
@@ -11,7 +11,7 @@ const Login = () => {
   const handleLogin = async () => {
     // שליחת בקשת אימות משתמש לשרת
     try {
-      const response = await authenticateUser(email, password);
+      const response = await authUser(email, password);
       console.log(response); // אם האימות הצליח, תמיד נקבל תגובה מהשרת
       // כאן אפשר להוסיף פעולות נוספות, כמו הפניה לדף ראשי, הצגת הודעת הצלחה וכדומה
     } catch (error) {
