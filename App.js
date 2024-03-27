@@ -11,6 +11,7 @@ import UserProfileScreen from "./screens/stackNavigation/StackNavigation";
 import UserCart from "./screens/userCart/UserCart";
 import { Provider } from "react-redux";
 import store from "./app/store";
+import ProductScreen from "./screens/productScreen/ProductScreen";
 const Tab = createBottomTabNavigator();
 
 export default function App() {
@@ -45,7 +46,8 @@ export default function App() {
         <Tab.Screen name="Admin" component={AdminScreen} />
         <Tab.Screen name="Profile" component={UserProfileScreen} />
         <Tab.Screen name="Cart" component={UserCart} />
-        <Tab.Screen name="Bag" component={MainScreen} />
+          <Tab.Screen name="Bag" component={MainScreen} />
+          <Tab.Screen name="Product" component={ProductScreen} />
       </Tab.Navigator>
     </NavigationContainer>
     </Provider>
