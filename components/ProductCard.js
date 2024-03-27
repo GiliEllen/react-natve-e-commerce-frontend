@@ -4,6 +4,8 @@ import { Image, ScrollView, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { getSpecificProduct } from "../api/productsApi";
 import { useNavigation } from "@react-navigation/core";
+import SizeModalScreen from "../screens/productScreen/sizeModalScreen/SizeModalScreen";
+import ColorModalScreen from "../screens/productScreen/colorModalScreen/ColorModalScreen";
 
 const ProductCard = ({ productId }) => {
   const [isFavorite, setIsFavorite] = useState(false);
@@ -47,7 +49,7 @@ const ProductCard = ({ productId }) => {
       ),
       title: product?.name || "Product",
       headerRight: () => (
-        <Pressable onPress={() => console.log("Share pressed")}>
+        <Pressable onPress={() => alert("Share pressed")}>
           <Ionicons
             name="share-social"
             size={24}
@@ -76,20 +78,18 @@ const ProductCard = ({ productId }) => {
       </ScrollView>
       <View style={styles.contentContainer}>
         <View style={styles.userChoice}>
-          <Pressable
-            style={[styles.choosing, sizePressed && styles.choosingPressed]}
-            onPress={() => setSizePressed(!sizePressed)}
-          >
-            <Text>Size</Text>
-            <Ionicons name="chevron-down-outline" size={20} color="black" />
-          </Pressable>
-          <Pressable
-            style={[styles.choosing, colorPressed && styles.choosingPressed]}
-            onPress={() => setColorPressed(!colorPressed)}
-          >
-            <Text>Color</Text>
-            <Ionicons name="chevron-down-outline" size={20} color="black" />
-          </Pressable>
+          {product && product.sizes && (
+            <SizeModalScreen
+              style={[styles.choosing, sizePressed && styles.choosingPressed]}
+              sizes={product.sizes}
+            />
+          )}
+          {product && product.colors && (
+            <ColorModalScreen
+              style={[styles.choosing, colorPressed && styles.choosingPressed]}
+              colors={product.colors}
+            />
+          )}
           <Pressable
             style={{ alignItems: "center", top: 5 }}
             onPress={toggleFavorite}
@@ -135,11 +135,13 @@ const ProductCard = ({ productId }) => {
       </View>
       {/* Add to Cart button */}
       {product && (
-        <Pressable style={styles.addToCart}>
-          <Text style={{ color: "white", textAlign: "center" }}>
-            ADD TO CART
-          </Text>
-        </Pressable>
+        <View style={styles.addToCart}>
+          <Pressable style={styles.addToCartButton}>
+            <Text style={{ color: "white", textAlign: "center" }}>
+              ADD TO CART
+            </Text>
+          </Pressable>
+        </View>
       )}
     </View>
   ) : (
@@ -167,6 +169,7 @@ const styles = StyleSheet.create({
     height: 50,
     padding: 5,
     top: 5,
+    gap: 10,
   },
   heartContainer: {
     backgroundColor: "white",
@@ -189,18 +192,7 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
   contentContainer: {
-    justifyContent: "space-between",
-  },
-  contnetTitle: {
-    fontSize: 24,
-  },
-  contnetName: {
-    color: "#9B9B9B",
-    fontSize: 11,
-  },
-  contnetDescription: {
-    color: "#222222",
-    fontSize: 14,
+    justifyContent: "space-around",
   },
   ratingContainer: {
     flexDirection: "row",
@@ -208,12 +200,22 @@ const styles = StyleSheet.create({
     marginRight: 5,
   },
   addToCart: {
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+    height: 112,
+    backgroundColor: "#fff",
+    top: 0,
+  },
+  addToCartButton: {
     backgroundColor: "#DB3022",
     padding: 15,
-    borderRadius: 25,
+    borderRadius: 23,
     justifyContent: "center",
     alignItems: "center",
     margin: 10,
+    width: "90%",
+    height: 48,
   },
   choosing: {
     flexDirection: "row",
