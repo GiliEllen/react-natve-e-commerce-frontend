@@ -5,10 +5,13 @@ import AdminScreen from "./screens/mainScreen/AdminScreen";
 import MainScreen from "./screens/mainScreen/MainScreen";
 import { Ionicons } from "@expo/vector-icons";
 import UserProfileScreen from "./screens/stackNavigation/StackNavigation";
+import { Provider } from "react-redux";
+import { store } from "./store/store";
 const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
+    <Provider store={store}>
     <NavigationContainer>
       <Tab.Navigator
         screenOptions={({ route }) => ({
@@ -38,5 +41,6 @@ export default function App() {
         <Tab.Screen name="Bag" component={MainScreen} />
       </Tab.Navigator>
     </NavigationContainer>
+    </Provider>
   );
 }
