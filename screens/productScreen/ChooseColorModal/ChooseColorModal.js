@@ -51,11 +51,7 @@ const ColorModalScreen = ({ colors }) => {
                     <View style={styles.option} key={color}>
                       <Pressable onPress={() => handleColorSelection(color)}>
                         <View
-                          style={{
-                            width: 20,
-                            height: 20,
-                            backgroundColor: color,
-                          }}
+                          style={[ styles.colors, {backgroundColor: color} ]}
                         />
                       </Pressable>
                     </View>
