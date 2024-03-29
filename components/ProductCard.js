@@ -118,7 +118,7 @@ const ProductCard = ({ productId }) => {
                     size={20}
                     color="gold"
                   />
-                ))}
+                ))} 
                 <Text>({12})</Text>
               </View>
             </View>
@@ -137,7 +137,7 @@ const ProductCard = ({ productId }) => {
       {product && (
         <View style={styles.addToCart}>
           <Pressable style={styles.addToCartButton}>
-            <Text style={{ color: "white", textAlign: "center" }}>
+            <Text style={styles.buttonText}>
               ADD TO CART
             </Text>
           </Pressable>
@@ -215,7 +215,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     margin: 10,
     width: "90%",
-    height: 48,
+      height: 48,
+    },
+    buttonText: {
+        color: "white",
+        textAlign: "center" 
   },
   choosing: {
     flexDirection: "row",
@@ -232,7 +236,20 @@ const styles = StyleSheet.create({
   choosingPressed: {
     borderColor: "red",
     borderWidth: 1,
-  },
+    },
+    contnetTitle: {
+        fontWeight: "600",
+        fontSize: 24,
+    },
+    contnetName: {
+        fontWeight: "400",
+        fontSize: 11,
+        color: "#9B9B9B",
+    },
+    contnetDescription: {
+        fontWeight: "400",
+        fontSize: 14,
+    },
 });
 
 export default ProductCard;

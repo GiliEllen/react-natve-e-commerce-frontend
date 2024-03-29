@@ -111,6 +111,7 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     gap: 10,
     flex: 1,
+    paddingTop: 20,
   },
   option: {
     width: 100,
@@ -139,6 +140,7 @@ export const styles = StyleSheet.create({
     width: 138,
     borderColor: "#9B9B9B",
     borderWidth: 1,
+    
   },
   choosingPressed: {
     borderColor: "red",
@@ -160,4 +162,8 @@ export const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 10,
   },
+  colors: {
+    width: 20,
+    height: 20,
+  }
 });

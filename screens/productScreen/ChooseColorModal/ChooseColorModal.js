@@ -23,9 +23,7 @@ const ColorModalScreen = ({ colors }) => {
         }}
       >
         {selectedColor !== "Color" ? (
-          <View
-            style={{ width: 20, height: 20, backgroundColor: selectedColor }}
-          />
+          <View style={{backgroundColor:selectedColor, width:20, height:20} } />
         ) : (
           <Text>Color</Text>
         )}
