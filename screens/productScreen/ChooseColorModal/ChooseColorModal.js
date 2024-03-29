@@ -23,8 +23,8 @@ const ColorModalScreen = ({ colors }) => {
         }}
       >
         {selectedColor !== "Color" ? (
-          <View style={{backgroundColor:selectedColor, width:20, height:20} } />
-        ) : (
+          <View style={[ styles.colors, {backgroundColor: selectedColor} ] } />
+          ) : (
           <Text>Color</Text>
         )}
         <Ionicons name="chevron-down-outline" size={20} color="black" />
