@@ -1,27 +1,27 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, Text, StyleSheet } from 'react-native';
-import { authUser } from '../api/usersApi'; // ייבוא הפונקציה לאימות משתמש מה-API שיצרנו
+import { View, TextInput, Button, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { authUser } from '../api/usersApi';
 
 const Login = () => {
-  // הגדרת משתנים עבור פרטי ההתחברות
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
 
   const handleLogin = async () => {
-    // שליחת בקשת אימות משתמש לשרת
     try {
       const response = await authUser(email, password);
-      console.log(response); // אם האימות הצליח, תמיד נקבל תגובה מהשרת
-      // כאן אפשר להוסיף פעולות נוספות, כמו הפניה לדף ראשי, הצגת הודעת הצלחה וכדומה
+      console.log(response);
     } catch (error) {
-      console.error(error); // אם יש שגיאה באימות המשתמש, נדפיס אותה
+      console.error(error);
       setError('Invalid email or password');
     }
   };
 
   return (
     <View style={styles.container}>
+      <View style={styles.titleContainer}>
+        <Text style={styles.title}>Login</Text>
+      </View>
       <TextInput
         placeholder="Email"
         onChangeText={setEmail}
@@ -35,8 +35,16 @@ const Login = () => {
         secureTextEntry
         style={styles.input}
       />
+      <View style={styles.registerContainer}>
+        <Text style={styles.registerText}>Don’t have an account? </Text>
+        <TouchableOpacity>
+          <Text style={styles.registerLink}>Register here →</Text>
+        </TouchableOpacity>
+      </View>
       {error && <Text style={styles.error}>{error}</Text>}
-      <Button title="Login" onPress={handleLogin} />
+      <TouchableOpacity style={styles.button} onPress={handleLogin}>
+        <Text style={styles.buttonText}>Login</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -44,21 +52,73 @@ const Login = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'top',
     alignItems: 'center',
-    padding: 20,
+    backgroundColor: '#f9f9f9',
+    padding: 40,
+    paddingTop: 50
+  },
+  titleContainer: {
+    alignSelf: 'flex-start',
+    marginBottom: 40,
+  },
+  title: {
+    fontSize: 27,
+    color: 'black',
+    fontWeight: 'bold',
+    
   },
   input: {
-    width: '100%',
-    borderWidth: 1,
-    borderColor: 'gray',
+    backgroundColor: 'white',
+    width: 343,
+    height: 64,
     borderRadius: 5,
     padding: 10,
     marginBottom: 10,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
+    elevation: 2,
   },
   error: {
     color: 'red',
     marginBottom: 10,
+  },
+  registerContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center', // Changed to center
+    marginTop: 10, // Adjusted margin top
+  },
+  button: {
+    width: 343,
+    height: 48,
+    backgroundColor: '#db3022',
+    borderRadius: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 20,
+  },
+  buttonText: {
+    color: '#ffffff',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  registerText: {
+    fontFamily: 'Roboto',
+    fontWeight: '500',
+    fontSize: 14,
+    lineHeight: 20,
+    textAlign: 'right',
+    color: '#222222',
+  },
+  registerLink: {
+    color: '#db3022',
+    fontWeight: 'bold',
+    marginLeft: 5,
   },
 });
 
