@@ -1,17 +1,17 @@
 
+import 'react-native-gesture-handler';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import React from "react";
 import AdminScreen from "./screens/mainScreen/AdminScreen";
 import MainScreen from "./screens/mainScreen/MainScreen";
 import { Ionicons } from "@expo/vector-icons";
-import ProductScreen from "./screens/productScreen/ProductScreen";
 import CompleteOrder from "./screens/completeOrderScrn/CompleteOrder";
-import ProductDetailScreen from './screens/ProductDetail/ProductDetail';
 import UserProfileScreen from "./screens/stackNavigation/StackNavigation";
 import UserCart from "./screens/userCart/UserCart";
 import { Provider } from "react-redux";
 import store from "./app/store";
+import ProductStackNavigator from './components/ProductStackNavigator'
 const Tab = createBottomTabNavigator();
 
 export default function App() {
@@ -45,7 +45,7 @@ export default function App() {
         <Tab.Screen name="Home" component={MainScreen} />
         <Tab.Screen name="Admin" component={AdminScreen} />
         <Tab.Screen name="Profile" component={UserProfileScreen} />
-        <Tab.Screen name="shop" component={ProductScreen} />
+        <Tab.Screen name="Shop" component={ProductStackNavigator} />
         <Tab.Screen name="Bag" component={MainScreen} />
         
       </Tab.Navigator>
