@@ -1,7 +1,6 @@
-import { useNavigation } from "@react-navigation/native";
-import { StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 
-const OrderItem = () => {
+const OrderItem = ({ navigation, order }) => {
   const orderInfo = {
     orderId: "№1947034",
     orderDate: "12-12-2015",
@@ -10,39 +9,85 @@ const OrderItem = () => {
     totalAmount: 112,
     status: "Delivered",
   };
-  const handlePressDetails = () => {
-    useNavigation("orderDetails", { orderId: orderInfo.orderId });
+  const calculateTotalAmount = () => {
+    let sum = 0;
+    order.cartItems.forEach((item) => {
+      sum += item.productId.price;
+    });
   };
   return (
-    <View style={styles.order}>
-      <View style={styles.orderName}>
-        <Text style={styles.orderNameBold}> Order {orderInfo.orderId} </Text>
-        <Text style={styles.gray}> {orderInfo.orderDate} </Text>
-      </View>
-      <View style={styles.row}>
-        <Text style={styles.gray}>Tracking Number: </Text>
-        <Text style={styles.bold}> {orderInfo.trackingNumber} </Text>
-      </View>
-      <View style={styles.orderName}>
-        <View style={styles.row}>
-          <Text style={styles.gray}>Quantity: </Text>
-          <Text style={styles.bold}>{orderInfo.quantity}</Text>
+    <>
+      {order ? (
+        <View style={styles.order}>
+          <View style={styles.order}>
+            <Text style={styles.orderNameBold}> Order {order.order._id} </Text>
+            <Text style={styles.gray}> {orderInfo.orderDate} </Text>
+          </View>
+          <View style={styles.row}>
+            <Text style={styles.gray}>Tracking Number: </Text>
+            <Text style={styles.bold}> {orderInfo.trackingNumber} </Text>
+          </View>
+          <View style={styles.orderName}>
+            <View style={styles.row}>
+              <Text style={styles.gray}>Quantity: </Text>
+              <Text style={styles.bold}>{order.cartItems.length()}</Text>
+            </View>
+            <View style={styles.row}>
+              <Text style={styles.gray}>Total Amount: </Text>
+              <Text style={styles.bold}>{calculateTotalAmount()}$</Text>
+            </View>
+          </View>
+          <View style={styles.bottom}>
+            <Pressable
+              onPress={() => {
+                navigation.navigate(`OrderPage`);
+              }}
+              style={styles.detailsBtn}
+            >
+              <Text style={styles.bold}>Details</Text>
+            </Pressable>
+            <View>
+              <Text style={styles[orderInfo.status]}>{order.order.status}</Text>
+            </View>
+          </View>
+        </View>
+      ) : (
+        <></>
+      )}
+      <View style={styles.order}>
+        <View style={styles.orderName}>
+          <Text style={styles.orderNameBold}> Order {orderInfo.orderId} </Text>
+          <Text style={styles.gray}> {orderInfo.orderDate} </Text>
         </View>
         <View style={styles.row}>
-          <Text style={styles.gray}>Total Amount: </Text>
-          <Text style={styles.bold}>{orderInfo.totalAmount}$</Text>
+          <Text style={styles.gray}>Tracking Number: </Text>
+          <Text style={styles.bold}> {orderInfo.trackingNumber} </Text>
+        </View>
+        <View style={styles.orderName}>
+          <View style={styles.row}>
+            <Text style={styles.gray}>Quantity: </Text>
+            <Text style={styles.bold}>{orderInfo.quantity}</Text>
+          </View>
+          <View style={styles.row}>
+            <Text style={styles.gray}>Total Amount: </Text>
+            <Text style={styles.bold}>{orderInfo.totalAmount}$</Text>
+          </View>
+        </View>
+        <View style={styles.bottom}>
+          <Pressable
+            onPress={() => {
+              navigation.navigate(`OrderPage`);
+            }}
+            style={styles.detailsBtn}
+          >
+            <Text style={styles.bold}>Details</Text>
+          </Pressable>
+          <View>
+            <Text style={styles[orderInfo.status]}>{orderInfo.status}</Text>
+          </View>
         </View>
       </View>
-
-      <View style={styles.bottom}>
-        <View onPress={handlePressDetails} style={styles.detailsBtn}>
-          <Text style={styles.bold}>Details</Text>
-        </View>
-        <View>
-          <Text style={styles[orderInfo.status]}>{orderInfo.status}</Text>
-        </View>
-      </View>
-    </View>
+    </>
   );
 };
 
@@ -83,6 +128,7 @@ const styles = StyleSheet.create({
   bottom: {
     paddingVertical: 20,
     paddingHorizontal: 10,
+    paddingBottom: 5,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",

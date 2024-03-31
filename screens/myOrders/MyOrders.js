@@ -1,24 +1,54 @@
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import OrderItem from "./OrderItem";
 import { BackIcon, SearchIcon } from "./Svgs/icons";
 import TagBody from "./TagsBody";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
-const MyOrders = () => {
+const MyOrders = ({ navigation }) => {
+  const [orders, setOrders] = useState(null);
+  const userId = "ndjnjwewe12132";
+  const API_URL = "https://react-native-e-commerce-backend.onrender.com";
+  const fetchOrders = async () => {
+    try {
+      const { data } = await axios.get(
+        `${API_URL}/api/orders/${userId}/all-orders/done`
+      );
+      if (data) setOrders(data.orders);
+      else throw new Error("Couldn't find orders");
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    fetchOrders();
+  }, []);
+
   return (
     <View style={styles.myOrderPage}>
       <View style={styles.topBtn}>
-        <BackIcon />
+        <Pressable
+          onPress={() => {
+            navigation.navigate(`ProfilePage`, { name: `ProfilePage` });
+          }}
+        >
+          <BackIcon />
+        </Pressable>
         <SearchIcon />
       </View>
       <Text style={styles.headerMyOrder}>My Orders</Text>
       <TagBody />
       <ScrollView>
-        <OrderItem />
-        <OrderItem />
-        <OrderItem />
-        <OrderItem />
-        <OrderItem />
-        <OrderItem />
+        {orders ? (
+          orders.forEach((orderInfo) => {
+            <OrderItem
+              key={orderInfo.order._id}
+              navigation={navigation}
+              order={orderInfo}
+            />;
+          })
+        ) : (
+          <Text style={styles.noInfo}>No information on orders received.</Text>
+        )}
       </ScrollView>
     </View>
   );
@@ -41,5 +71,11 @@ const styles = StyleSheet.create({
     marginLeft: 16,
     fontWeight: "bold",
     fontSize: 34,
+  },
+  noInfo: {
+    color: "gray",
+    fontSize: 14,
+    textAlign: "center",
+    padding: 30,
   },
 });

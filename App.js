@@ -33,7 +33,11 @@ export default function App() {
       >
         <Tab.Screen name="Home" component={MainScreen} />
         <Tab.Screen name="Admin" component={AdminScreen} />
-        <Tab.Screen name="Profile" component={UserProfileScreen} />
+        <Tab.Screen
+          name="Profile"
+          component={UserProfileScreen}
+          // options={{ headerShown: false }}
+        />
         <Tab.Screen name="Shop" component={MainScreen} />
         <Tab.Screen name="Bag" component={MainScreen} />
       </Tab.Navigator>
