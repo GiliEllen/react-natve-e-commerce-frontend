@@ -1,20 +1,19 @@
 import React, { useState } from 'react';
 import { View, TextInput, Button, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { authUser } from '../api/usersApi';
-import { useNavigation } from '@react-navigation/native'; // יבוא של פונקציית ניווט
+import { useNavigation } from '@react-navigation/native'; 
 
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
-  const navigation = useNavigation(); // השמת הפונקציה למשתנה
+  const navigation = useNavigation(); 
 
     const handleLogin = async () => {
     try {
       const response = await authUser(email, password);
-      console.log(response);
-      navigation.navigate('Home'); // ניווט לעמוד הבית במידה וההתחברות הצליחה
+      navigation.navigate('Home');  
     } catch (error) {
       console.error(error);
       setError('Invalid email or password');
@@ -94,8 +93,8 @@ const styles = StyleSheet.create({
   },
   registerContainer: {
     flexDirection: 'row',
-    justifyContent: 'center', // Changed to center
-    marginTop: 10, // Adjusted margin top
+    justifyContent: 'center', 
+    marginTop: 10, 
   },
   button: {
     width: 343,

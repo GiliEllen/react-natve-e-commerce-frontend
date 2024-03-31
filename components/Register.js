@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, TextInput, Button, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { createUser } from  '../api/usersApi'; 
-import { useNavigation } from '@react-navigation/native'; // יבוא של פונקציית ניווט
+import { useNavigation } from '@react-navigation/native'; 
 
 
 const Register = () => {
@@ -10,7 +10,7 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState(null);
-  const navigation = useNavigation(); // השמת הפונקציה למשתנה
+  const navigation = useNavigation(); 
   const handleRegister = async () => {
     if (password !== confirmPassword) {
       setError('Password does not match');
@@ -19,8 +19,7 @@ const Register = () => {
 
     try {
       const response = await createUser(email, password);
-      console.log(response); 
-      navigation.navigate('Login'); // ניווט לעמוד הבית במידה וההתחברות הצליחה
+      navigation.navigate('Login'); 
     } catch (error) {
       console.error(error); 
       setError('Failed to create user');
