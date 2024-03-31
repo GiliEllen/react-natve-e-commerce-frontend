@@ -7,13 +7,13 @@ import axios from "axios";
 
 import { useSelector } from "react-redux";
 import { selectUserState } from "./userSlice";
+import { API_URL } from "../../api/userPasswordApi";
 
 const MyOrders = ({ navigation }) => {
   const [orders, setOrders] = useState(null);
   const user = useSelector(selectUserState);
   const userId = user._id;
 
-  const API_URL = "https://react-native-e-commerce-backend.onrender.com";
   const fetchOrders = async () => {
     try {
       const { data } = await axios.get(

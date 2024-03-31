@@ -17,7 +17,7 @@ const OrderInfo = ({ order }) => {
     return sum;
   };
   return (
-    <ScrollView style={{ padding: 15 }}>
+    <ScrollView style={styles.padding15}>
       <Text style={styles.orderInfoHead}>Order information</Text>
       <View style={styles.rowLeft}>
         <Text style={styles.gray}>Shipping Address:</Text>
@@ -111,6 +111,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "black",
   },
+  padding15: { padding: 15 },
 });
 
 export default OrderInfo;

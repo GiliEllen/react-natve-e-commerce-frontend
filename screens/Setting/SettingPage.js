@@ -52,12 +52,12 @@ const SettingPage = ({ navigation }) => {
       </View>
       <View style={styles.settingPage}>
         <View>
-          <Text style={styles.fullName}>{`Full name ${
-            user.name ? user.name : null
-          }`}</Text>
+          <Text style={styles.fullName}>
+            {user.name ? `Full name: ${user.name}` : "user not found."}
+          </Text>
         </View>
         <View style={styles.changePassComp}>
-          <View style={[styles.row, { paddingVertical: 24 }]}>
+          <View style={[styles.row, styles.paddingComp]}>
             <Text style={styles.passwordHead}>Password</Text>
             <Pressable onPress={popUp}>
               <Text style={styles.change}>Change</Text>
@@ -171,6 +171,7 @@ const styles = StyleSheet.create({
     fontWeight: 500,
     paddingVertical: 15,
   },
+  paddingComp: { paddingVertical: 24 },
 });
 
 export default SettingPage;

@@ -1,7 +1,7 @@
 import { ScrollView } from "react-native";
 import Item from "./Item";
 
-const ListItem = ({ cartItems }) => {
+const ListItems = ({ cartItems }) => {
   return (
     <ScrollView>
       {cartItems.map((item) => {
@@ -11,4 +11,4 @@ const ListItem = ({ cartItems }) => {
   );
 };
 
-export default ListItem;
+export default ListItems;

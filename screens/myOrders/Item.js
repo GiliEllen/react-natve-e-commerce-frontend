@@ -36,40 +36,7 @@ const Item = ({ orderInfo }) => {
       </View>
     );
 
-  return (
-    <></>
-    // <View style={styles.item}>
-    //   <Image
-    //     style={styles.image}
-    //     source={{
-    //       uri: "https://s3-alpha-sig.figma.com/img/6e2a/6075/d2aebb9b52db31deea621f309362bab4?Expires=1712534400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=QFCAe~6v5h2Q5laJhEh7oy1jEzrlziweXQKuVRXd1ozN1hHqn~THT2XFEShgwcmkjTfPLaBwkQrHS0eGAzn~bHToiNrDm1-8CJs8Bz~Ka4T7A-7P5ktxcaejBtX1D0Fl~OzUkAI76nn0mxWeLLMf~HqQTJG5xT0M6~7s6wQ3WiPbAfxQ1xrtZkkTohBCiT~pYc~zVmu94dp9RLFyROnFPZ80tGjCKfeHGhMIHn5Hty3kfO~igurvSHZpmkN4l9Q2x6V05juZrYJrdT3r8QTxQ6Qg-pyWXhD~otdVAHRFR7cBzDKyFQ1up1caQdcCk3OLaXjlqjwOAMIaUEQE6lgNHQ__",
-    //     }}
-    //   />
-    //   <View style={styles.itemInfo}>
-    //     <Text style={styles.itemName}>{"itemName"}</Text>
-    //     <Text style={styles.gray}>{"itemCompany"}</Text>
-    //     <View style={styles.rightRow}>
-    //       <View style={styles.row}>
-    //         <Text style={styles.gray}>Color:</Text>
-    //         <Text>{"Red"}</Text>
-    //       </View>
-    //       <View style={styles.row}>
-    //         <Text style={[styles.gray, styles.paddingL]}>size:</Text>
-    //         <Text>{"size-L"}</Text>
-    //       </View>
-    //     </View>
-    //     <View>
-    //       <View style={styles.row}>
-    //         <View style={styles.row}>
-    //           <Text style={[styles.gray, styles.row]}>Units:</Text>
-    //           <Text>{"1"}</Text>
-    //         </View>
-    //         <Text style={styles.bold}>{"43$"}</Text>
-    //       </View>
-    //     </View>
-    //   </View>
-    // </View>
-  );
+  return null;
 };
 
 export default Item;

@@ -1,7 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Modal,
-  PanResponder,
   Pressable,
   StyleSheet,
   Text,
@@ -24,18 +23,6 @@ const PasswordModal = ({ visible, onClose }) => {
     if (newPass === repeatPass) setSamePass(true);
     if (newPass === "" || repeatPass === "") setSamePass(false);
   }, [newPass, repeatPass]);
-
-  const panResponder = useRef(
-    PanResponder.create({
-      onStartShouldSetPanResponder: () => true,
-      onPanResponderMove: (event, gestureState) => {
-        if (gestureState.dy > 0) {
-          onClose();
-          console.log("מחליקים למטה");
-        }
-      },
-    })
-  ).current;
 
   const resetForm = () => {
     setOldPass("");
@@ -68,7 +55,6 @@ const PasswordModal = ({ visible, onClose }) => {
       transparent={true}
       visible={visible}
       onRequestClose={onClose}
-      {...panResponder.panHandlers}
     >
       <View style={styles.modalContainer}>
         <View style={styles.modalContent}>
@@ -99,12 +85,8 @@ const PasswordModal = ({ visible, onClose }) => {
             placeholder="New Password"
           />
           {newPass.length > 0 && newPass.length < 8 ? (
-            <Text style={{ color: "red" }}>
-              Password must be at least 8 chars.
-            </Text>
-          ) : (
-            <></>
-          )}
+            <Text style={styles.red}>Password must be at least 8 chars.</Text>
+          ) : null}
           <TextInput
             style={styles.input}
             onChangeText={setRepeatPass}
@@ -114,24 +96,18 @@ const PasswordModal = ({ visible, onClose }) => {
             placeholder="Repeat New Password"
           />
           {!samePass && repeatPass.length > 0 ? (
-            <Text style={{ color: "red" }}>Passwords needs to be equal.</Text>
-          ) : (
-            <></>
-          )}
-          {samePass ? (
-            <TouchableOpacity
-              style={styles.subBtn}
-              onPress={() => {
-                onSubmit();
-              }}
-            >
-              <Text style={styles.subBtnText}>SAVE PASSWORD</Text>
-            </TouchableOpacity>
-          ) : (
-            <TouchableOpacity style={styles.subBtnUnused}>
-              <Text style={styles.subBtnText}>SAVE PASSWORD</Text>
-            </TouchableOpacity>
-          )}
+            <Text style={styles.red}>Passwords needs to be equal.</Text>
+          ) : null}
+
+          <TouchableOpacity
+            style={samePass ? styles.subBtn : styles.subBtnUnused}
+            onPress={() => {
+              if (!samePass) return;
+              onSubmit();
+            }}
+          >
+            <Text style={styles.subBtnText}>SAVE PASSWORD</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </Modal>
@@ -232,6 +208,9 @@ const styles = StyleSheet.create({
     lineHeight: 8,
     marginBottom: 18,
     textAlign: "center",
+  },
+  red: {
+    color: "red",
   },
 });
 export default PasswordModal;

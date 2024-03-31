@@ -53,7 +53,7 @@ const OrderItem = ({ navigation, order }) => {
           </View>
         </View>
       ) : (
-        <></>
+        <Text>Order not found, error 404</Text>
       )}
     </>
   );

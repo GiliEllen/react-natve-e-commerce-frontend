@@ -1,6 +1,6 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { BackIcon, SearchIcon } from "./Svgs/icons";
-import ListItem from "./ListItem";
+import ListItems from "./ListItems";
 
 const OrderPage = ({ navigation }) => {
   const route = useRoute();
@@ -45,7 +45,7 @@ const OrderPage = ({ navigation }) => {
         </View>
         <Text style={styles.amountItem}>{order.cartItems.length}</Text>
       </View>
-      <ListItem cartItems={order.cartItems} />
+      <ListItems cartItems={order.cartItems} />
       <OrderInfo order={order} />
     </View>
   );
