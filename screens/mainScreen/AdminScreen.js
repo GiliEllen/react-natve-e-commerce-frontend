@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -8,12 +9,13 @@ import {
   Pressable,
   Alert,
 } from "react-native";
-import React, { useEffect, useState } from "react";
 import { deleteUser, getAllUsers, updateUser } from "../../api/adminApi";
+import AddNewProdModal from "../addNewProdModal/addNewProdModal";
 
 const AdminScreen = () => {
   const [users, setUsers] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
+  const [productModalVisible, setProductModalVisible] = useState(false);
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [userId, setUserId] = useState("");
@@ -56,11 +58,15 @@ const AdminScreen = () => {
     }
   };
 
+  const handleAddProductModal = () => {
+    setProductModalVisible(true);
+  };
+
   return (
     <View>
       <FlatList
         data={users}
-        keyExtractor={item => item._id}
+        keyExtractor={(item) => item._id}
         renderItem={({ item }) => {
           return (
             <View style={styles.centeredView}>
@@ -97,6 +103,16 @@ const AdminScreen = () => {
           );
         }}
       />
+
+      <View style={styles.addButtonContainer}>
+        <Pressable
+          style={[styles.button, styles.addProdButton]}
+          onPress={handleAddProductModal}
+        >
+          <Text style={styles.addProdText}>+</Text>
+        </Pressable>
+      </View>
+
       <Modal
         animationType="slide"
         transparent={true}
@@ -135,6 +151,11 @@ const AdminScreen = () => {
           </View>
         </View>
       </Modal>
+
+      <AddNewProdModal
+        modalVisible={productModalVisible}
+        setModalVisible={setProductModalVisible}
+      />
     </View>
   );
 };
@@ -165,16 +186,30 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 10,
     elevation: 2,
+    margin: 2,
+    justifyContent: "center",
   },
   buttonOpen: {
-    backgroundColor: "red",
+    backgroundColor: "#DB3022",
   },
   buttonClose: {
-    backgroundColor: "red",
+    backgroundColor: "#DB3022",
+  },
+  addProdButton: {
+    marginBottom: 0,
+    borderRadius: 100,
+    width: 50,
+    height: 50,
+    backgroundColor: "#DB3022",
+  },
+  addProdText: {
+    fontSize: 20,
+    color: "white",
+    textAlign: "center",
   },
   buttonX: {
     alignItems: "left",
-    backgroundColor: "red",
+    backgroundColor: "#DB3022",
     borderRadius: 20,
     padding: 10,
     elevation: 2,
@@ -196,6 +231,20 @@ const styles = StyleSheet.create({
   },
   sideBySideView: {
     flexDirection: "row",
+  },
+  addButtonContainer: {
+    alignItems: "flex-end",
+    marginRight: 20,
+    marginBottom: 20,
+  },
+  addButton: {
+    backgroundColor: "#DB3022",
+    borderRadius: 50,
+    padding: 20,
+  },
+  buttonText: {
+    color: "white",
+    fontWeight: "bold",
   },
 });
 
