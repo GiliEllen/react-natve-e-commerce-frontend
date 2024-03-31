@@ -17,13 +17,6 @@ const AddNewProdModal = ({ modalVisible, setModalVisible }) => {
   const [productColor, setProductColor] = useState("");
 
   const handleAddProduct = () => {
-    console.log("Product Name:", productName);
-    console.log("Product Description:", productDescription);
-    console.log("Product Brand:", productBrand);
-    console.log("Product Size:", productSize);
-    console.log("Product Price:", productPrice);
-    console.log("Product Color:", productColor);
-
     setModalVisible(false);
   };
 
