@@ -18,7 +18,7 @@ const ProductDetailScreen = ({ route }) => {
           </TouchableOpacity>
         ))}
       </View>
-      {/* Color Selector */}
+   
       <View style={styles.colorSelector}>
         {product.colors.map((color) => (
           <TouchableOpacity key={color} onPress={() => setSelectedColor(color)}>
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   },
   sizeText: {
     margin: 10,
-    // Additional styling
+    
   },
   colorSelector: {
     flexDirection: 'row',
@@ -61,14 +61,14 @@ const styles = StyleSheet.create({
     height: 30,
     borderRadius: 15,
     margin: 10,
-    // Additional styling
+  
   },
   productName: {
     fontSize: 20,
     fontWeight: 'bold',
-    // Additional styling
+   
   },
-  // Additional styles
+
 });
 
 export default ProductDetailScreen;
