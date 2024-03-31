@@ -1,16 +1,9 @@
 {
-<<<<<<< HEAD
-<<<<<<< HEAD
     "cSpell.words": [
         "Ionicons",
         "Pressable"
-    ]
-=======
+    ],
     "editor.formatOnPaste": false,
     "editor.formatOnSave": true
->>>>>>> d26ce5b (WIP)
-=======
-    "editor.formatOnPaste": false,
-    "editor.formatOnSave": true
->>>>>>> d26ce5ba381de9042b234a2aa7949cc002a23ba0
+
 }
