@@ -10,12 +10,15 @@ import {
   View,
 } from "react-native";
 import { changePassword } from "../../api/userPasswordApi";
+import { useSelector } from "react-redux";
+import { selectUserState } from "./userSlice";
 
 const PasswordModal = ({ visible, onClose }) => {
   const [oldPass, setOldPass] = useState("");
   const [newPass, setNewPass] = useState("");
   const [repeatPass, setRepeatPass] = useState("");
   const [samePass, setSamePass] = useState(false);
+  const user = useSelector(selectUserState);
 
   useEffect(() => {
     if (newPass === repeatPass) setSamePass(true);
@@ -43,7 +46,7 @@ const PasswordModal = ({ visible, onClose }) => {
   const onSubmit = async () => {
     try {
       const changedSuccessfully = await changePassword(
-        userId,
+        user._id,
         oldPass,
         newPass,
         repeatPass

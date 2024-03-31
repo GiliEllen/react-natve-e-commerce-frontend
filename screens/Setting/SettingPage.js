@@ -9,6 +9,8 @@ import {
 import { BackIcon, SearchIcon } from "../myOrders/Svgs/icons";
 import { useState } from "react";
 import PasswordModal from "./PasswordModal";
+import { useSelector } from "react-redux";
+import { selectUserState } from "./userSlice";
 
 const SettingPage = ({ navigation }) => {
   const [modalVis, setModalVis] = useState(false);
@@ -18,6 +20,9 @@ const SettingPage = ({ navigation }) => {
   const toggleSwitch1 = () => setIsEnabled1((previousState) => !previousState);
   const toggleSwitch2 = () => setIsEnabled2((previousState) => !previousState);
   const toggleSwitch3 = () => setIsEnabled3((previousState) => !previousState);
+
+  const user = useSelector(selectUserState);
+
   const popUp = () => {
     setModalVis((prev) => {
       return !prev;
@@ -47,7 +52,9 @@ const SettingPage = ({ navigation }) => {
       </View>
       <View style={styles.settingPage}>
         <View>
-          <Text style={styles.fullName}>Full name</Text>
+          <Text style={styles.fullName}>{`Full name ${
+            user.name ? user.name : null
+          }`}</Text>
         </View>
         <View style={styles.changePassComp}>
           <View style={[styles.row, { paddingVertical: 24 }]}>

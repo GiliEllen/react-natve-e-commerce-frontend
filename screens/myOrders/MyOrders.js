@@ -5,9 +5,14 @@ import TagBody from "./TagsBody";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+import { useSelector } from "react-redux";
+import { selectUserState } from "./userSlice";
+
 const MyOrders = ({ navigation }) => {
   const [orders, setOrders] = useState(null);
-  const userId = "ndjnjwewe12132";
+  const user = useSelector(selectUserState);
+  const userId = user._id;
+
   const API_URL = "https://react-native-e-commerce-backend.onrender.com";
   const fetchOrders = async () => {
     try {
@@ -16,7 +21,9 @@ const MyOrders = ({ navigation }) => {
       );
       if (data) setOrders(data.orders);
       else throw new Error("Couldn't find orders");
-    } catch (error) {}
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   useEffect(() => {

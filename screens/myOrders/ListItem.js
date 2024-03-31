@@ -1,13 +1,12 @@
 import { ScrollView } from "react-native";
 import Item from "./Item";
 
-const ListItem = ({ orderInfo }) => {
+const ListItem = ({ cartItems }) => {
   return (
     <ScrollView>
-      <Item />
-      <Item />
-      <Item />
-      <Item />
+      {cartItems.map((item) => {
+        <Item item={item} />;
+      })}
     </ScrollView>
   );
 };

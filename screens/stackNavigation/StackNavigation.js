@@ -36,7 +36,6 @@ const UserProfileScreen = () => {
         component={SettingPage}
         options={{ headerShown: false }}
       />
-      {/* <Stack.Screen name='Settings' component={Settings}/> */}
     </Stack.Navigator>
   );
 };

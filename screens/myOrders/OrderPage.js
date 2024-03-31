@@ -2,13 +2,13 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import { BackIcon, SearchIcon } from "./Svgs/icons";
 import ListItem from "./ListItem";
 
-const OrderPage = ({ navigation, orderInfo }) => {
-  orderInfo = {
-    orderId: "№1947034",
-    orderDate: "12-12-2015",
+const OrderPage = ({ navigation }) => {
+  const route = useRoute();
+  const { order } = route.params;
+  const orderId = order.order._id;
+
+  orderHardCoded = {
     trackingNumber: "IJ39482490",
-    quantity: 4,
-    totalAmount: 112,
     status: "Delivered",
   };
 
@@ -29,19 +29,24 @@ const OrderPage = ({ navigation, orderInfo }) => {
       </View>
       <View>
         <View style={styles.orderName}>
-          <Text style={styles.orderNameBold}> Order {orderInfo.orderId} </Text>
-          <Text style={styles.gray}> {orderInfo.orderDate} </Text>
+          <Text style={styles.orderNameBold}> Order {orderId} </Text>
+          <Text style={styles.gray}>
+            {order.order.completedAt
+              ? order.order.completedAt
+              : order.order.createdAt}
+          </Text>
         </View>
         <View style={styles.orderName}>
           <View style={styles.row}>
             <Text style={styles.gray}>Tracking Number: </Text>
-            <Text style={styles.bold}> {orderInfo.trackingNumber} </Text>
+            <Text style={styles.bold}> {orderHardCoded.trackingNumber} </Text>
           </View>
-          <Text style={styles[orderInfo.status]}>{orderInfo.status}</Text>
+          <Text style={styles[order.status]}>{orderHardCoded.status}</Text>
         </View>
-        <Text style={styles.amountItem}>3 items</Text>
+        <Text style={styles.amountItem}>{order.cartItems.length}</Text>
       </View>
-      <ListItem />
+      <ListItem cartItems={order.cartItems} />
+      <OrderInfo order={order} />
     </View>
   );
 };
