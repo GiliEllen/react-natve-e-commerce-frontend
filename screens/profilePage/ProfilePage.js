@@ -1,8 +1,12 @@
 import { View, Text, Image, StyleSheet } from "react-native";
 import React from "react";
 import Option from "../../components/Option";
+import { useSelector } from "react-redux";
+import { selectUserState } from "../../reducers/user/userSlice";
 
 const ProfilePage = ({ navigation }) => {
+  const user = useSelector(selectUserState);
+  
   return (
     <View style={styles.view}>
       <Text style={styles.textProfile}>My profile</Text>
@@ -14,8 +18,11 @@ const ProfilePage = ({ navigation }) => {
           }}
         />
         <View>
-          <Text style={styles.textName}>Matilda Brown</Text>
-          <Text style={styles.textEmail}>matilda@gmail.com</Text>
+
+          <Text style={styles.textName}>
+            {user.name}
+          </Text>
+          <Text style={styles.textEmail}>{user.email}</Text>
         </View>
       </View>
       <Option
