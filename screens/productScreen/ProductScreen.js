@@ -5,7 +5,7 @@ import ProductCard from '../../components/ProductCard';
 const ProductScreen = ({ navigation }) => {
     return (
         <View style={styles.container}>
-            <ProductCard navigation={navigation} />
+            <ProductCard navigation={navigation}/>
         </View>
     );
 };
