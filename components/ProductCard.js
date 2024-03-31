@@ -79,6 +79,7 @@ const ProductCard = ({ productId }) => {
         // order_id: order_id, 
       })
     );
+    alert("Item added to cart");
   };
 
   const handleSizeSelect = (size) => {
