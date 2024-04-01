@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import React from "react";
@@ -13,6 +14,7 @@ import UserProfileScreen from "./screens/stackNavigation/StackNavigation";
 import UserCart from "./screens/userCart/UserCart";
 import { Provider } from "react-redux";
 import store from "./app/store";
+import ProductStackNavigator from './components/ProductStackNavigator'
 import ProductScreen from "./screens/productScreen/ProductScreen";
 const Tab = createBottomTabNavigator();
 
