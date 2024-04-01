@@ -9,9 +9,7 @@ const ProfilePage = ({ navigation }) => {
   
   return (
     <View style={styles.view}>
-      <Text style={styles.textProfile}>
-        My profile
-      </Text>
+      <Text style={styles.textProfile}>My profile</Text>
       <View style={styles.profile}>
         <Image
           style={styles.img}
@@ -20,6 +18,7 @@ const ProfilePage = ({ navigation }) => {
           }}
         />
         <View>
+
           <Text style={styles.textName}>
             {user.name}
           </Text>
@@ -29,7 +28,7 @@ const ProfilePage = ({ navigation }) => {
       <Option
         label={"My orders"}
         span={"Already have 12 orders"}
-        nameRouter="ProfilePage"
+        nameRouter="MyOrders"
         navigation={navigation}
       />
       <Option
@@ -59,7 +58,7 @@ const ProfilePage = ({ navigation }) => {
       <Option
         label={"Settings"}
         span={"Notifications, password"}
-        nameRouter="MainScreen"
+        nameRouter="SettingPage"
         navigation={navigation}
       />
     </View>
@@ -69,20 +68,20 @@ const ProfilePage = ({ navigation }) => {
 export default ProfilePage;
 
 const styles = StyleSheet.create({
-  view:{
-    padding: 15 
+  view: {
+    padding: 15,
   },
-  textProfile:{
+  textProfile: {
     fontWeight: "bold",
     fontSize: 35,
-    paddingBottom: 18
+    paddingBottom: 18,
   },
-  textName:{
+  textName: {
     fontWeight: "bold",
-    fontSize: 18 
+    fontSize: 18,
   },
-  textEmail:{
-    color: "gray"
+  textEmail: {
+    color: "gray",
   },
   profile: {
     display: "flex",
