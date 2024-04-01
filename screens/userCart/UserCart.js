@@ -13,6 +13,7 @@ import BagItem from "../../components/BagItem";
 
 const UserCart = () => {
   const { activeCartItems, loading, error } = useCart();
+  const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
