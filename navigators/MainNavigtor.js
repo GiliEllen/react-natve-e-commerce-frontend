@@ -7,6 +7,7 @@ import MainScreen from "../screens/mainScreen/MainScreen";
 import AdminScreen from "./../screens/mainScreen/AdminScreen";
 import ProductScreen from "./../screens/productScreen/ProductScreen";
 import UserProfileScreen from "./../screens/stackNavigation/StackNavigation";
+import ProductStackNavigator from "./../components/ProductStackNavigator";
 const Tab = createBottomTabNavigator();
 
 export default function MainNavigator() {
@@ -39,7 +40,7 @@ export default function MainNavigator() {
         <Tab.Screen name="Home" component={MainScreen} />
         <Tab.Screen name="Admin" component={AdminScreen} />
         <Tab.Screen name="Profile" component={UserProfileScreen} />
-        <Tab.Screen name="shop" component={ProductScreen} />
+        <Tab.Screen name="shop" component={ProductStackNavigator} />
         <Tab.Screen name="Bag" component={MainScreen} />
       </Tab.Navigator>
     </>
