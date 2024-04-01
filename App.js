@@ -6,10 +6,9 @@ import MainScreen from "./screens/mainScreen/MainScreen";
 import LoginScreen from "./screens/loginRegister/LoginScreen";
 import RegisterScreen from "./screens/loginRegister/RegisterScreen";
 
-
 import { Ionicons } from "@expo/vector-icons";
 import CompleteOrder from "./screens/completeOrderScrn/CompleteOrder";
-
+import ProductDetailScreen from "./screens/ProductDetail/ProductDetail";
 import UserProfileScreen from "./screens/stackNavigation/StackNavigation";
 import UserCart from "./screens/userCart/UserCart";
 import { Provider } from "react-redux";
@@ -37,15 +36,13 @@ export default function App() {
                 iconName = focused
                   ? "person-circle-sharp"
                   : "person-circle-outline";
+              } else if (route.name === "Login") {
+                iconName = focused ? "person" : "person-circle-outline";
+              } else if (route.name === "Register") {
+                iconName = focused ? "person" : "person-circle-outline";
               }
-              else if (route.name === "Login") {
-              iconName = focused ? "person" : "person-circle-outline";
-            }
-            else if (route.name === "Register") {
-              iconName = focused ? "person" : "person-circle-outline";
-            }
-            
-            return <Ionicons name={iconName} size={size} color={color} />;
+
+              return <Ionicons name={iconName} size={size} color={color} />;
             },
             tabBarActiveTintColor: "#DB3022",
             tabBarInactiveTintColor: "#9B9B9B",
@@ -56,9 +53,9 @@ export default function App() {
           <Tab.Screen name="Home" component={MainScreen} />
           <Tab.Screen name="Admin" component={AdminScreen} />
           <Tab.Screen name="Profile" component={UserProfileScreen} />
-          <Tab.Screen name="Cart" component={UserCart} />
+          <Tab.Screen name="shop" component={ProductScreen} />
           <Tab.Screen name="Bag" component={MainScreen} />
-      </Tab.Navigator>
+        </Tab.Navigator>
       </NavigationContainer>
     </Provider>
   );
