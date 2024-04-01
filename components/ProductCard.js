@@ -6,13 +6,19 @@ import { getSpecificProduct } from "../api/productsApi";
 import { useNavigation } from "@react-navigation/core";
 import SizeModalScreen from "../screens/productScreen/sizeModalScreen/SizeModalScreen";
 import ColorModalScreen from "../screens/productScreen/ChooseColorModal/ChooseColorModal";
+import { useDispatch } from "react-redux";
+import { addItemToCart } from "../reducers/cart/userCartApi";
 
-const ProductCard = ({ productId }) => {
+const ProductCard = ({ route }) => {
+  const { productId } = route.params;
   const [isFavorite, setIsFavorite] = useState(false);
   const [product, setProduct] = useState();
   const [sizePressed, setSizePressed] = useState(false);
   const [colorPressed, setColorPressed] = useState(false);
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const [selectedSize, setSelectedSize] = useState("Size");
+  const [selectedColor, setSelectedColor] = useState("Color");
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -80,12 +86,20 @@ const ProductCard = ({ productId }) => {
         <View style={styles.userChoice}>
           {product && product.sizes && (
             <SizeModalScreen
+              setSelectedSize={setSelectedSize}
+              selectedSize={selectedSize}
+              sizePressed={sizePressed}
+              setSizePressed={setSizePressed}
               style={[styles.choosing, sizePressed && styles.choosingPressed]}
               sizes={product.sizes}
             />
           )}
           {product && product.colors && (
             <ColorModalScreen
+              selectedColor={selectedColor}
+              setSelectedColor={setSelectedColor}
+              colorPressed={colorPressed}
+              setColorPressed={setColorPressed}
               style={[styles.choosing, colorPressed && styles.choosingPressed]}
               colors={product.colors}
             />
@@ -118,7 +132,7 @@ const ProductCard = ({ productId }) => {
                     size={20}
                     color="gold"
                   />
-                ))} 
+                ))}
                 <Text>({12})</Text>
               </View>
             </View>
@@ -135,11 +149,22 @@ const ProductCard = ({ productId }) => {
       </View>
       {/* Add to Cart button */}
       {product && (
-        <View style={styles.addToCart}>
+        <View
+          onPress={() => {
+            dispatch(
+              addItemToCart({
+                productId: productId,
+                orderId: "",
+                amount: 1,
+                color: selectedColor,
+                size: selectedSize,
+              })
+            );
+          }}
+          style={styles.addToCart}
+        >
           <Pressable style={styles.addToCartButton}>
-            <Text style={styles.buttonText}>
-              ADD TO CART
-            </Text>
+            <Text style={styles.buttonText}>ADD TO CART</Text>
           </Pressable>
         </View>
       )}
@@ -215,11 +240,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     margin: 10,
     width: "90%",
-      height: 48,
-    },
-    buttonText: {
-        color: "white",
-        textAlign: "center" 
+    height: 48,
+  },
+  buttonText: {
+    color: "white",
+    textAlign: "center",
   },
   choosing: {
     flexDirection: "row",
@@ -236,20 +261,20 @@ const styles = StyleSheet.create({
   choosingPressed: {
     borderColor: "red",
     borderWidth: 1,
-    },
-    contnetTitle: {
-        fontWeight: "600",
-        fontSize: 24,
-    },
-    contnetName: {
-        fontWeight: "400",
-        fontSize: 11,
-        color: "#9B9B9B",
-    },
-    contnetDescription: {
-        fontWeight: "400",
-        fontSize: 14,
-    },
+  },
+  contnetTitle: {
+    fontWeight: "600",
+    fontSize: 24,
+  },
+  contnetName: {
+    fontWeight: "400",
+    fontSize: 11,
+    color: "#9B9B9B",
+  },
+  contnetDescription: {
+    fontWeight: "400",
+    fontSize: 14,
+  },
 });
 
 export default ProductCard;

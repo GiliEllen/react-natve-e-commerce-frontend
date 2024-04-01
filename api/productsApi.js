@@ -21,3 +21,18 @@ export const getSpecificProduct = async (productId) => {
     return;
   }
 };
+
+export const getUsersOrder = async (userId) => {
+  try {
+    const { data } = await axios.post(`${API_URL}/api/orders/${userId}`);
+    console.log("userId: " + userId);
+    // const { data } = await axios.post(
+    //   `http://localhost:4000/api/orders/${userId}`
+    // );
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.error(error);
+    return;
+  }
+};

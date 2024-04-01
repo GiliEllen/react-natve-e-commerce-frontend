@@ -100,7 +100,9 @@ const ProductScreen = () => {
   const renderProduct = ({ item }) => (
     <TouchableOpacity
       style={styles.productContainer}
-      onPress={() => navigation.navigate("ProductDetail", { product: item })}
+      onPress={() =>
+        navigation.navigate("ProductDetail", { productId: item._id })
+      }
     >
       <View style={styles.imageContainer}>
         {item.image ? (

@@ -3,10 +3,16 @@ import { Modal, Pressable, Text, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { styles } from "../sizeModalScreen/SizeModalScreen";
 
-const ColorModalScreen = ({ colors }) => {
+const ColorModalScreen = ({
+  colors,
+  selectedColor,
+  setSelectedColor,
+  colorPressed,
+  setColorPressed,
+}) => {
   const [modalVisibility, setModalVisibility] = useState(false);
-  const [selectedColor, setSelectedColor] = useState("Color");
-  const [colorPressed, setColorPressed] = useState(false);
+  // const [selectedColor, setSelectedColor] = useState("Color");
+  // const [colorPressed, setColorPressed] = useState(false);
 
   const handleColorSelection = (color) => {
     setSelectedColor(color);
@@ -23,8 +29,8 @@ const ColorModalScreen = ({ colors }) => {
         }}
       >
         {selectedColor !== "Color" ? (
-          <View style={[ styles.colors, {backgroundColor: selectedColor} ] } />
-          ) : (
+          <View style={[styles.colors, { backgroundColor: selectedColor }]} />
+        ) : (
           <Text>Color</Text>
         )}
         <Ionicons name="chevron-down-outline" size={20} color="black" />
@@ -51,7 +57,7 @@ const ColorModalScreen = ({ colors }) => {
                     <View style={styles.option} key={color}>
                       <Pressable onPress={() => handleColorSelection(color)}>
                         <View
-                          style={[ styles.colors, {backgroundColor: color} ]}
+                          style={[styles.colors, { backgroundColor: color }]}
                         />
                       </Pressable>
                     </View>
