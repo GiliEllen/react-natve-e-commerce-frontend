@@ -35,4 +35,6 @@ const cartItemsSlice = createSlice({
 
 export const { setActiveOrder } = cartItemsSlice.actions;
 
+export const activeOrderSelector = (state) => state.cartItems.activeOrder;
+
 export default cartItemsSlice.reducer;

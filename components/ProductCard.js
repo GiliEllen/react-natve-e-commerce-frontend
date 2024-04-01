@@ -6,8 +6,12 @@ import { getSpecificProduct } from "../api/productsApi";
 import { useNavigation } from "@react-navigation/core";
 import SizeModalScreen from "../screens/productScreen/sizeModalScreen/SizeModalScreen";
 import ColorModalScreen from "../screens/productScreen/ChooseColorModal/ChooseColorModal";
-import { useDispatch } from "react-redux";
-import { addItemToCart } from "../reducers/cart/userCartApi";
+import { useDispatch, useSelector } from "react-redux";
+import { handleAddItemToCart } from "../reducers/cart/userCartApi";
+import {
+  activeOrderSelector,
+  setActiveOrder,
+} from "../reducers/cart/userCartSlice";
 
 const ProductCard = ({ route }) => {
   const { productId } = route.params;
@@ -16,9 +20,25 @@ const ProductCard = ({ route }) => {
   const [sizePressed, setSizePressed] = useState(false);
   const [colorPressed, setColorPressed] = useState(false);
   const navigation = useNavigation();
-  const dispatch = useDispatch();
+  const order = useSelector(activeOrderSelector);
   const [selectedSize, setSelectedSize] = useState("Size");
   const [selectedColor, setSelectedColor] = useState("Color");
+
+  const handleAdd = async () => {
+    try {
+      console.log("test");
+      const data = await handleAddItemToCart({
+        productId: productId,
+        orderId: order._id,
+        amount: 1,
+        color: selectedColor,
+        size: selectedSize,
+      });
+      console.log(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -149,21 +169,8 @@ const ProductCard = ({ route }) => {
       </View>
       {/* Add to Cart button */}
       {product && (
-        <View
-          onPress={() => {
-            dispatch(
-              addItemToCart({
-                productId: productId,
-                orderId: "",
-                amount: 1,
-                color: selectedColor,
-                size: selectedSize,
-              })
-            );
-          }}
-          style={styles.addToCart}
-        >
-          <Pressable style={styles.addToCartButton}>
+        <View style={styles.addToCart}>
+          <Pressable style={styles.addToCartButton} onPress={handleAdd}>
             <Text style={styles.buttonText}>ADD TO CART</Text>
           </Pressable>
         </View>
