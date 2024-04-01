@@ -5,14 +5,18 @@ import {
   View,
   ActivityIndicator,
   Pressable,
+  FlatList,
+  ScrollView,
 } from "react-native";
 import useCart from "../../app/useCart";
+import BagItem from "../../components/BagItem";
 
 const UserCart = () => {
   const { activeCartItems, loading, error } = useCart();
 
   return (
     <View style={styles.container}>
+      <Text style={styles.mainTitle}>My Bag</Text>
       <Text>
         {loading ? (
           <ActivityIndicator size="large" color="#0000ff" />
@@ -21,7 +25,16 @@ const UserCart = () => {
         )}
       </Text>
       <Text>{error && <Text>{error}</Text>}</Text>
-      <Text>{activeCartItems.length === 0 && <Text> empty cart</Text>}</Text>
+      <Text>
+        {activeCartItems.length === 0 && <Text></Text>}
+        <ScrollView style={styles.itemsList}>
+          <BagItem />
+          <BagItem />
+          <BagItem />
+          <BagItem />
+          <BagItem />
+        </ScrollView>
+      </Text>
       <Text>
         {activeCartItems.length > 0 && (
           <Text> products: {activeCartItems.length}</Text>
@@ -53,9 +66,19 @@ export default UserCart;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
     alignItems: "center",
     position: "relative",
+  },
+  mainTitle: {
+    top: 7,
+    fontWeight: "bold",
+    fontSize: 34,
+    color: "#222222",
+  },
+
+  itemsList: {
+    top: 50,
+    height: 340,
   },
 
   button: {
@@ -82,7 +105,7 @@ const styles = StyleSheet.create({
     color: "#9B9B9B",
     padding: 8,
     borderRadius: 8,
-    bottom: 140,
+    bottom: 120,
 
     // Box shadow for iOS
     shadowColor: "#000",
@@ -98,7 +121,7 @@ const styles = StyleSheet.create({
   arrowBtn: {
     position: "absolute",
     right: 10,
-    bottom: 140,
+    bottom: 120,
     width: 40,
     height: 40,
     backgroundColor: "black",
@@ -116,7 +139,7 @@ const styles = StyleSheet.create({
   },
   total: {
     position: "absolute",
-    bottom: 93,
+    bottom: 83,
     left: 20,
     color: "#9B9B9B",
   },
