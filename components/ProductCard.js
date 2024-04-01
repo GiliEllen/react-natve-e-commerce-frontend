@@ -4,16 +4,17 @@ import { Ionicons } from "@expo/vector-icons";
 import { getSpecificProduct } from "../api/productsApi";
 import SizeModalScreen from "../screens/productScreen/sizeModalScreen/SizeModalScreen";
 import ColorModalScreen from "../screens/productScreen/ChooseColorModal/ChooseColorModal";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/core";
 import { addItemToCart } from "../reducers/cart/userCartApi";
-
+import { updateSelector } from "../reducers/cart/userCartSlice";
 
 const ProductCard = ({ productId }) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [product, setProduct] = useState();
   const [selectedSize, setSelectedSize] = useState(null);
   const [selectedColor, setSelectedColor] = useState(null);
+  const isUpdate = useSelector(updateSelector);
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
@@ -33,6 +34,13 @@ const ProductCard = ({ productId }) => {
     };
     fetchProduct();
   }, []);
+
+  useEffect(() => {
+    if (isUpdate) {
+      alert("Item added to cart");
+      dispatch(updateSelector(false));
+    }
+  }, [isUpdate]);
 
   const toggleFavorite = () => {
     setIsFavorite(!isFavorite);
@@ -75,11 +83,10 @@ const ProductCard = ({ productId }) => {
         productId: productId,
         quantity: 1,
         size: selectedSize,
-        color: selectedColor
-        // order_id: order_id, 
+        color: selectedColor,
+        order_id: "65e2fe83cbb272ed91268e1e", 
       })
     );
-    alert("Item added to cart");
   };
 
   const handleSizeSelect = (size) => {
