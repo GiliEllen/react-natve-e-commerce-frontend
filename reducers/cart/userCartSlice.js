@@ -7,6 +7,7 @@ import {
 } from "./userCartApi";
 
 const initialState = {
+  activeOrder: "",
   activeCartItems: [],
   loading: false,
   error: null,
@@ -15,7 +16,11 @@ const initialState = {
 const cartItemsSlice = createSlice({
   name: "cartItems",
   initialState,
-  reducers: {},
+  reducers: {
+    setActiveOrder: (state, action) => {
+      state.activeOrder = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchCartItems.pending, (state) => {
@@ -58,5 +63,7 @@ const cartItemsSlice = createSlice({
       });
   },
 });
+
+export const { setActiveOrder } = cartItemsSlice.actions;
 
 export default cartItemsSlice.reducer;

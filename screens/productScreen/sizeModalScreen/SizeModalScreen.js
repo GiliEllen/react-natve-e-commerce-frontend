@@ -2,10 +2,16 @@ import React, { useState } from "react";
 import { Modal, Pressable, StyleSheet, Text, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
-const SizeModalScreen = ({ sizes }) => {
+const SizeModalScreen = ({
+  sizes,
+  setSelectedSize,
+  selectedSize,
+  sizePressed,
+  setSizePressed,
+}) => {
   const [modalVisibility, setModalVisibility] = useState(false);
-  const [selectedSize, setSelectedSize] = useState("Size");
-  const [sizePressed, setSizePressed] = useState(false);
+  // const [selectedSize, setSelectedSize] = useState("Size");
+  // const [sizePressed, setSizePressed] = useState(false);
 
   const handleSizeSelection = (size) => {
     setSelectedSize(size);
@@ -140,7 +146,6 @@ export const styles = StyleSheet.create({
     width: 138,
     borderColor: "#9B9B9B",
     borderWidth: 1,
-    
   },
   choosingPressed: {
     borderColor: "red",
@@ -165,5 +170,5 @@ export const styles = StyleSheet.create({
   colors: {
     width: 20,
     height: 20,
-  }
+  },
 });
