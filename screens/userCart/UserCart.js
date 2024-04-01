@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
   },
   total: {
     position: "absolute",
-    bottom: 90,
+    bottom: 93,
     left: 20,
     color: "#9B9B9B",
   },

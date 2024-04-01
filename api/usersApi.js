@@ -1,5 +1,4 @@
 import axios from "axios";
-// import API_URL from "../api/productsApi"
 export const API_URL = "https://react-native-e-commerce-backend.onrender.com";
 
 export const createUser = async (email, password, name) => {
