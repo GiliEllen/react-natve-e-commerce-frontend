@@ -51,10 +51,13 @@ const ProductDetailScreen = ({ route }) => {
             <Text style={styles.selectorText}>Color: {selectedColor}</Text>
             <Icon name="caret-down" size={16} color="black" />
           </TouchableOpacity>
-
-         
-          <TouchableOpacity onPress={toggleFavorite}>
-            <Icon name={isFavorite ? "heart" : "heart-outline"} size={24} color="red" />
+        ))}
+      </View>
+     
+      <View style={styles.colorSelector}>
+        {product.colors.map((color) => (
+          <TouchableOpacity key={color} onPress={() => setSelectedColor(color)}>
+            <View style={[styles.colorCircle, { backgroundColor: color }]} />
           </TouchableOpacity>
         </View>
 
@@ -112,6 +115,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: '100%',
+  },
+  colorCircle: {
+    width: 30,
+    height: 30,
+    borderRadius: 15,
+    margin: 10,
+   
     alignItems: 'center',
     marginBottom: 20,
   },

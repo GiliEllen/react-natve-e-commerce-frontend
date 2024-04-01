@@ -2,5 +2,8 @@
     "cSpell.words": [
         "Ionicons",
         "Pressable"
-    ]
+    ],
+    "editor.formatOnPaste": false,
+    "editor.formatOnSave": true
+
 }
