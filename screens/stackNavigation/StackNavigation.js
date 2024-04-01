@@ -5,6 +5,7 @@ import MainScreen from "../mainScreen/MainScreen";
 import MyOrders from "../myOrders/MyOrders";
 import OrderPage from "../myOrders/OrderPage";
 import SettingPage from "../Setting/SettingPage";
+import CompleteOrder from "../completeOrderScrn/CompleteOrder";
 
 const Stack = createNativeStackNavigator();
 

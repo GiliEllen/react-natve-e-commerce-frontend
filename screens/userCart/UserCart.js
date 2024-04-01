@@ -10,10 +10,11 @@ import {
 } from "react-native";
 import useCart from "../../app/useCart";
 import BagItem from "../../components/BagItem";
+import { useNavigation } from "@react-navigation/native"; // Import useNavigation hook
 
 const UserCart = () => {
   const { activeCartItems, loading, error } = useCart();
-
+  const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
@@ -53,7 +54,7 @@ const UserCart = () => {
         Total amount: <Text style={styles.price}>124$</Text>
       </Text>
 
-      <Pressable style={styles.button}  > 
+      <Pressable style={styles.button} onPress={()=>  navigation.navigate("CompleteOrder")}  > 
         <View style={styles.buttonContent}> 
           <Text style={styles.buttonText}>CHECK OUT</Text> 
         </View> 
