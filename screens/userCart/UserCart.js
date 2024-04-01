@@ -13,7 +13,7 @@ import BagItem from "../../components/BagItem";
 
 const UserCart = () => {
   const { activeCartItems, loading, error } = useCart();
-  const navigation = useNavigation();
+
 
   return (
     <View style={styles.container}>
@@ -53,10 +53,7 @@ const UserCart = () => {
         Total amount: <Text style={styles.price}>124$</Text>
       </Text>
 
-      <Pressable style={styles.button}
-      onPress={
-        navigation.navigate("CompleteOrder")
-      }> 
+      <Pressable style={styles.button}  > 
         <View style={styles.buttonContent}> 
           <Text style={styles.buttonText}>CHECK OUT</Text> 
         </View> 
