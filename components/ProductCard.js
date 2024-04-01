@@ -152,7 +152,7 @@ const ProductCard = ({ productId }) => {
                     size={20}
                     color="gold"
                   />
-                ))}
+                ))} 
                 <Text>({12})</Text>
               </View>
             </View>

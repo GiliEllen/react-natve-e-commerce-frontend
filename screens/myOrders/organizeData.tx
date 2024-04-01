@@ -1,0 +1,23 @@
+array of object type {order,cartItems[]}[]
+
+
+order={
+    userId: { type: Schema.Types.ObjectId, ref: User },
+    status: { type: String, default: OrderStatus.PENDING },
+    createdAt: Date,
+    completedAt: Date || null
+}
+
+cartItem=
+    {
+    productId: { type: Schema.Types.ObjectId, ref: Product },
+    amount: Number,
+    color: String,
+    size: String,
+    orderId: { type: Schema.Types.ObjectId, ref: Order }
+}
+
+
+orders[0].order.status
+orders[0].cartItems[0].amount
+
