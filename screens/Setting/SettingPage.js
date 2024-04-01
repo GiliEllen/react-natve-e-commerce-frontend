@@ -10,7 +10,7 @@ import { BackIcon, SearchIcon } from "../myOrders/Svgs/icons";
 import { useState } from "react";
 import PasswordModal from "./PasswordModal";
 import { useSelector } from "react-redux";
-import { selectUserState } from "./userSlice";
+import { selectUserState } from "../../reducers/user/userSlice";
 
 const SettingPage = ({ navigation }) => {
   const [modalVis, setModalVis] = useState(false);

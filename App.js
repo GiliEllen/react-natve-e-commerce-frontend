@@ -1,27 +1,17 @@
-import 'react-native-gesture-handler';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { NavigationContainer } from "@react-navigation/native";
 import React from "react";
-import AdminScreen from "./screens/mainScreen/AdminScreen";
-import MainScreen from "./screens/mainScreen/MainScreen";
-import LoginScreen from "./screens/loginRegister/LoginScreen";
-import RegisterScreen from "./screens/loginRegister/RegisterScreen";
+import "react-native-gesture-handler";
 
-import { Ionicons } from "@expo/vector-icons";
-import CompleteOrder from "./screens/completeOrderScrn/CompleteOrder";
-import ProductDetailScreen from "./screens/ProductDetail/ProductDetail";
-import UserProfileScreen from "./screens/stackNavigation/StackNavigation";
-import UserCart from "./screens/userCart/UserCart";
 import { Provider } from "react-redux";
 import store from "./app/store";
-import ProductStackNavigator from './components/ProductStackNavigator'
-import ProductScreen from "./screens/productScreen/ProductScreen";
+import AppNavigator from "./navigators/AppsNavigator";
+import AuthNavigator from "./navigators/AuthNavigator";
 const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
     <Provider store={store}>
-      <NavigationContainer>
+      {/* <NavigationContainer>
         <Tab.Navigator
           screenOptions={({ route }) => ({
             tabBarIcon: ({ focused, color, size }) => {
@@ -58,7 +48,9 @@ export default function App() {
           <Tab.Screen name="shop" component={ProductScreen} />
           <Tab.Screen name="Bag" component={MainScreen} />
         </Tab.Navigator>
-      </NavigationContainer>
+      </NavigationContainer> */}
+      {/* <AppNavigator /> */}
+      <AuthNavigator />
     </Provider>
   );
 }

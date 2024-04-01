@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { changePassword } from "../../api/userPasswordApi";
 import { useSelector } from "react-redux";
-import { selectUserState } from "./userSlice";
+import { selectUserState } from "../../reducers/user/userSlice";
 
 const PasswordModal = ({ visible, onClose }) => {
   const [oldPass, setOldPass] = useState("");

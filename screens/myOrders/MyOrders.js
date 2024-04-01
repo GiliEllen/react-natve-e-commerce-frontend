@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 import { useSelector } from "react-redux";
-import { selectUserState } from "./userSlice";
+import { selectUserState } from "../../reducers/user/userSlice";
 import { API_URL } from "../../api/userPasswordApi";
 
 const MyOrders = ({ navigation }) => {
