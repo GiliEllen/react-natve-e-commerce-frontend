@@ -8,7 +8,7 @@ import AdminScreen from "./../screens/mainScreen/AdminScreen";
 import ProductScreen from "./../screens/productScreen/ProductScreen";
 import UserProfileScreen from "./../screens/stackNavigation/StackNavigation";
 import ProductStackNavigator from "./../components/ProductStackNavigator";
-import UserCart from "./../screens/userCart/UserCart";
+import UserCart from "../screens/userCart/UserCart";
 const Tab = createBottomTabNavigator();
 
 export default function MainNavigator() {

@@ -22,6 +22,7 @@ const Login = () => {
   const handleLogin = async () => {
     try {
       const response = await authUser(email, password);
+      console.log(response);
       if (response.user) {
         dispatch(setUser(response.user));
         dispatch(setIsLoggedIn(true));
